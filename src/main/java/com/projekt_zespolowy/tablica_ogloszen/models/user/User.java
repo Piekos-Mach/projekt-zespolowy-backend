@@ -22,4 +22,10 @@ public class User {
   @JoinColumn(name = "user_type_id")
   private UserType type;
 
+  @Column(name = "name")
+  private String name;
+
+  @Column(name = "password")
+  private String password;
+
 }
