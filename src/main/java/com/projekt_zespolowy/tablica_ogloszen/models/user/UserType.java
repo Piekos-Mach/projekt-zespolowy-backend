@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "dictionary_user_status")
+@Table(name = "dictionary_user_type")
 public class UserType {
 
   @Id

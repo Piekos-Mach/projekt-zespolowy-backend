@@ -1,0 +1,16 @@
+package com.projekt_zespolowy.tablica_ogloszen.models.price;
+
+import java.math.BigDecimal;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class CreatePriceCmd {
+
+  private BigDecimal value;
+  private Long currency;
+
+}
