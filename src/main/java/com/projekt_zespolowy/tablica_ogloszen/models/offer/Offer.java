@@ -34,11 +34,11 @@ public class Offer {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "notice_id")
+  @Column(name = "offer_id")
   private Long id;
 
   @ManyToOne
-  @Column(name = "vendor_user_id")
+  @Column(name = "vendor_user")
   private User vendor;
 
   @Column(name = "title")
@@ -60,7 +60,7 @@ public class Offer {
   @Embedded
   private Price price;
 
-  @OneToMany(mappedBy = "notice", orphanRemoval = true, cascade = {CascadeType.REMOVE,
+  @OneToMany(mappedBy = "offer", orphanRemoval = true, cascade = {CascadeType.REMOVE,
       CascadeType.PERSIST})
   private List<Image> images = Lists.newArrayList();
 
@@ -69,7 +69,11 @@ public class Offer {
   private LocalDateTime creationDate;
 
   @ManyToOne
-  @JoinColumn(name = "notice_status_id")
+  @JoinColumn(name = "status")
   private OfferStatus status;
+
+  @ManyToOne
+  @JoinColumn(name = "type")
+  private OfferType type;
 
 }

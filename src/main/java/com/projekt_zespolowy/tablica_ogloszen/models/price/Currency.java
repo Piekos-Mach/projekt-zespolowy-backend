@@ -8,9 +8,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "dictionary_currency")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Currency {
 
   @Id
@@ -20,30 +26,6 @@ public class Currency {
 
   @Column(name = "name")
   private String name;
-
-  public Currency() {
-  }
-
-  public Currency(Long id, String name) {
-    this.id = id;
-    this.name = name;
-  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
 
   public enum CURRENCY {
     PLN(1L, "PLN");

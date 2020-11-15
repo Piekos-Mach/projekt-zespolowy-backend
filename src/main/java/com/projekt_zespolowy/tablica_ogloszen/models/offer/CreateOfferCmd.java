@@ -2,7 +2,7 @@ package com.projekt_zespolowy.tablica_ogloszen.models.offer;
 
 import com.google.common.collect.Lists;
 import com.projekt_zespolowy.tablica_ogloszen.models.image.CreateImageCmd;
-import com.projekt_zespolowy.tablica_ogloszen.models.offer.OfferStatus.NOTICE_STATUS;
+import com.projekt_zespolowy.tablica_ogloszen.models.offer.OfferStatus.OFFER_STATUS;
 import com.projekt_zespolowy.tablica_ogloszen.models.price.CreatePriceCmd;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,6 +21,6 @@ public class CreateOfferCmd {
   private CreatePriceCmd price;
   private List<CreateImageCmd> images = Lists.newArrayList();
   private LocalDateTime creationDate = LocalDateTime.now();
-  private OfferStatus status = NOTICE_STATUS.ACTIVE.toNoticeStatus();
+  private OfferStatus status = OFFER_STATUS.ACTIVE.toOfferStatus();
 
 }
