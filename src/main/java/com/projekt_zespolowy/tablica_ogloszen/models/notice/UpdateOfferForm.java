@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UpdateNoticeForm {
+public class UpdateOfferForm {
 
   private Long id;
   private Long vendor;

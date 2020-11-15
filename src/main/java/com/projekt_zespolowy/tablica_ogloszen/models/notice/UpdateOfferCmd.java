@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UpdateNoticeCmd {
+public class UpdateOfferCmd {
 
   private Long id;
   private String title;

@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class NoticeStatus {
+public class OfferStatus {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,8 +53,8 @@ public class NoticeStatus {
       return this.id;
     }
 
-    public NoticeStatus toNoticeStatus() {
-      return new NoticeStatus(this.id, this.name());
+    public OfferStatus toNoticeStatus() {
+      return new OfferStatus(this.id, this.name());
     }
 
   }

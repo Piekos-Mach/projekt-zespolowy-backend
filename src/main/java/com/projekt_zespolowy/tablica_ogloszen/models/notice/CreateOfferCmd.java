@@ -2,7 +2,7 @@ package com.projekt_zespolowy.tablica_ogloszen.models.notice;
 
 import com.google.common.collect.Lists;
 import com.projekt_zespolowy.tablica_ogloszen.models.image.CreateImageCmd;
-import com.projekt_zespolowy.tablica_ogloszen.models.notice.NoticeStatus.NOTICE_STATUS;
+import com.projekt_zespolowy.tablica_ogloszen.models.notice.OfferStatus.NOTICE_STATUS;
 import com.projekt_zespolowy.tablica_ogloszen.models.price.CreatePriceCmd;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateNoticeCmd {
+public class CreateOfferCmd {
 
   private Long vendor;
   private String title;
@@ -21,6 +21,6 @@ public class CreateNoticeCmd {
   private CreatePriceCmd price;
   private List<CreateImageCmd> images = Lists.newArrayList();
   private LocalDateTime creationDate = LocalDateTime.now();
-  private NoticeStatus status = NOTICE_STATUS.ACTIVE.toNoticeStatus();
+  private OfferStatus status = NOTICE_STATUS.ACTIVE.toNoticeStatus();
 
 }

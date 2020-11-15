@@ -1,6 +1,6 @@
 package com.projekt_zespolowy.tablica_ogloszen.models.image;
 
-import com.projekt_zespolowy.tablica_ogloszen.models.notice.Notice;
+import com.projekt_zespolowy.tablica_ogloszen.models.notice.Offer;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,11 +24,11 @@ public class Image {
   private Long id;
 
   @Lob
-  @Column(name = "image_bytes")
-  private byte[] imageBytes;
+  @Column(name = "content")
+  private byte[] content;
 
   @ManyToOne
-  @Column(name = "notice")
-  private Notice notice;
+  @Column(name = "offer")
+  private Offer offer;
 
 }

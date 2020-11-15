@@ -30,7 +30,7 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Notice {
+public class Offer {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -70,6 +70,6 @@ public class Notice {
 
   @ManyToOne
   @JoinColumn(name = "notice_status_id")
-  private NoticeStatus status;
+  private OfferStatus status;
 
 }
