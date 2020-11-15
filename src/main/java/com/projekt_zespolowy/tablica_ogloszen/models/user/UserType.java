@@ -8,72 +8,56 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "dictionary_user_type")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserType {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "user_status_id")
+  @Column(name = "user_type_id")
   private Long id;
 
   @Column(name = "name")
   private String name;
 
-  public enum USER_STATUS {
-    ADMIN(1L),
-    USER(2L);
+  public enum USER_TYPE {
+    CUSTOMER(1L),
+    GUEST(2L),
+    ADMIN(4L);
 
-    private Long id;
-    private static final Map<Long, USER_STATUS> BY_ID = new HashMap<>();
+    private static final Map<Long, USER_TYPE> BY_ID = new HashMap<>();
 
     static {
-      for (USER_STATUS e : values()) {
+      for (USER_TYPE e : values()) {
         BY_ID.put(e.id, e);
       }
     }
 
-    USER_STATUS(Long id) {
+    private Long id;
+
+    USER_TYPE(Long id) {
       this.id = id;
+    }
+
+    public static USER_TYPE idOf(Long id) {
+      return BY_ID.get(id);
     }
 
     public Long getId() {
       return this.id;
     }
 
-    public static USER_STATUS idOf(Long id) {
-      return BY_ID.get(id);
-    }
-
-    public UserType toUserStatus() {
+    public UserType toUserType() {
       return new UserType(this.id, this.name());
     }
 
-  }
-
-  public UserType() {
-  }
-
-  public UserType(Long id, String name) {
-    this.id = id;
-    this.name = name;
-  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
   }
 
 }
