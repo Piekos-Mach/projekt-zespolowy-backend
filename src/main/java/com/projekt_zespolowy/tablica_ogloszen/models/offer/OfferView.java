@@ -1,4 +1,4 @@
-package com.projekt_zespolowy.tablica_ogloszen.models.notice;
+package com.projekt_zespolowy.tablica_ogloszen.models.offer;
 
 import com.google.common.collect.Lists;
 import com.projekt_zespolowy.tablica_ogloszen.models.image.ImageView;

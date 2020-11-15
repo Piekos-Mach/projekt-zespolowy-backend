@@ -1,6 +1,6 @@
 package com.projekt_zespolowy.tablica_ogloszen.models.image;
 
-import com.projekt_zespolowy.tablica_ogloszen.models.notice.Offer;
+import com.projekt_zespolowy.tablica_ogloszen.models.offer.Offer;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

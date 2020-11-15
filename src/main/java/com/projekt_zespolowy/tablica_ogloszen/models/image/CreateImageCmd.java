@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class  CreateImageCmd {
 
-  private String image;
+  private String content;
   private Long offer;
 
 }

@@ -1,7 +1,6 @@
-package com.projekt_zespolowy.tablica_ogloszen.models.notice;
+package com.projekt_zespolowy.tablica_ogloszen.models.offer;
 
 import com.google.common.collect.Lists;
-import com.projekt_zespolowy.tablica_ogloszen.models.image.Image;
 import com.projekt_zespolowy.tablica_ogloszen.models.image.ImageView;
 import com.projekt_zespolowy.tablica_ogloszen.models.price.PriceView;
 import com.projekt_zespolowy.tablica_ogloszen.models.user.UserView;

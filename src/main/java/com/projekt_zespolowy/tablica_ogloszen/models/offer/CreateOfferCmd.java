@@ -1,8 +1,8 @@
-package com.projekt_zespolowy.tablica_ogloszen.models.notice;
+package com.projekt_zespolowy.tablica_ogloszen.models.offer;
 
 import com.google.common.collect.Lists;
 import com.projekt_zespolowy.tablica_ogloszen.models.image.CreateImageCmd;
-import com.projekt_zespolowy.tablica_ogloszen.models.notice.OfferStatus.NOTICE_STATUS;
+import com.projekt_zespolowy.tablica_ogloszen.models.offer.OfferStatus.NOTICE_STATUS;
 import com.projekt_zespolowy.tablica_ogloszen.models.price.CreatePriceCmd;
 import java.time.LocalDateTime;
 import java.util.List;
