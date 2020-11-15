@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class OfferView {
 
   private Long id;
-  private UserView vendor = new UserView();
+  private UserView owner = new UserView();
   private String title;
   private String text;
   private PriceView price = new PriceView();

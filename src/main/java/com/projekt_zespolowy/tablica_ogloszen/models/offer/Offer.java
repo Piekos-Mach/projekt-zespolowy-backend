@@ -38,8 +38,8 @@ public class Offer {
   private Long id;
 
   @ManyToOne
-  @Column(name = "vendor_user")
-  private User vendor;
+  @JoinColumn(name = "owning_user_id")
+  private User owner;
 
   @Column(name = "title")
   private String title;
@@ -75,5 +75,12 @@ public class Offer {
   @ManyToOne
   @JoinColumn(name = "type")
   private OfferType type;
+
+  public void setImages(List<Image> images) {
+    for (Image image : images) {
+      image.setOffer(this);
+      this.images.add(image);
+    }
+  }
 
 }

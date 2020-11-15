@@ -12,6 +12,7 @@ public class CreateUserCmd {
 
   private String name;
   private String password;
-  private Long type = USER_TYPE.CUSTOMER.getId();
+  private String mail;
+  private UserType type = USER_TYPE.CUSTOMER.toUserType();
 
 }

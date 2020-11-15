@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class UpdateOfferForm {
 
   private Long id;
-  private Long vendor;
+  private Long owner;
   private String title;
   private String text;
   private UpdatePriceForm price;

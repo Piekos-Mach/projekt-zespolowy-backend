@@ -13,5 +13,6 @@ public class UserView {
   private Long id;
   private String name;
   private BasicView type;
+  private String mail;
 
 }

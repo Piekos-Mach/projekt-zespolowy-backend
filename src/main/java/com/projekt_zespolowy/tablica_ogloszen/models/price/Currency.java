@@ -34,24 +34,24 @@ public class Currency {
 
     static {
       for (Currency.CURRENCY e : values()) {
-        BY_ID.put(e.value, e);
+        BY_ID.put(e.id, e);
       }
     }
 
-    private Long value;
+    private Long id;
     private String name;
 
     CURRENCY(Long val, String name) {
-      this.value = val;
+      this.id = val;
       this.name = name;
     }
 
-    public static Currency.CURRENCY valueOf(Long id) {
+    public static Currency.CURRENCY idOf(Long id) {
       return BY_ID.get(id);
     }
 
-    public Long value() {
-      return value;
+    public Long getId() {
+      return id;
     }
 
     public String getName() {
@@ -59,7 +59,7 @@ public class Currency {
     }
 
     public Currency toCurrency() {
-      return new Currency(this.value, this.name);
+      return new Currency(this.id, this.name);
     }
 
   }

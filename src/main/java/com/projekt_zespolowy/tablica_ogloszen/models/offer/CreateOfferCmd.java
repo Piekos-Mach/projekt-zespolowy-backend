@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CreateOfferCmd {
 
-  private Long vendor;
+  private Long owner;
   private String title;
   private String text;
   private CreatePriceCmd price;

@@ -4,11 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class  CreateImageCmd {
+@Data
+public class CreateImageForm {
 
-  private String content;
+  private String content = "";
 
 }
