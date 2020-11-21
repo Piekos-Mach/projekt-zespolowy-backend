@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-public abstract class MapperResolverService {
+public class MapperResolverService {
 
     private final UserRepository userRepository;
     private final UserTypeRepository userTypeRepository;
