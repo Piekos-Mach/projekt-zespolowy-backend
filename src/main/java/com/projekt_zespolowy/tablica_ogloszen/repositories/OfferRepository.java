@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 
 public interface OfferRepository extends JpaRepository<Offer, Long>,
         QuerydslPredicateExecutor<Offer>,
+        QueryDslRepositoryExtension<Offer, QOffer>,
         QuerydslBinderCustomizer<QOffer> {
 
     @Override
