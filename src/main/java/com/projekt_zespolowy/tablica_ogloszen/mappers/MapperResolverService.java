@@ -8,6 +8,7 @@ import com.projekt_zespolowy.tablica_ogloszen.models.price.Currency;
 import com.projekt_zespolowy.tablica_ogloszen.models.user.User;
 import com.projekt_zespolowy.tablica_ogloszen.models.user.UserType;
 import com.projekt_zespolowy.tablica_ogloszen.repositories.image.ImageRepository;
+import com.projekt_zespolowy.tablica_ogloszen.repositories.offer.OfferRepository;
 import com.projekt_zespolowy.tablica_ogloszen.repositories.offer.OfferStatusRepository;
 import com.projekt_zespolowy.tablica_ogloszen.repositories.offer.OfferTypeRepository;
 import com.projekt_zespolowy.tablica_ogloszen.repositories.price.CurrencyRepository;
@@ -24,7 +25,7 @@ public class MapperResolverService {
 
     private final UserRepository userRepository;
     private final UserTypeRepository userTypeRepository;
-    private final OfferRepositoryCustom offerRepository;
+    private final OfferRepository offerRepository;
     private final OfferTypeRepository offerTypeRepository;
     private final OfferStatusRepository offerStatusRepository;
     private final ImageRepository imageRepository;
