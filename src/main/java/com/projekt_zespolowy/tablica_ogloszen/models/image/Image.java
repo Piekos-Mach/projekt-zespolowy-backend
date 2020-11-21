@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @AllArgsConstructor
@@ -26,10 +28,11 @@ public class Image {
 
   @Lob
   @Column(name = "content")
-  private byte[] content;
+  private byte[] content = new byte[]{};
 
   @ManyToOne
   @JoinColumn(name = "offer")
-  private Offer offer;
+  @Fetch(value = FetchMode.JOIN)
+  private Offer offer = new Offer();
 
 }

@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class UpdatePriceForm {
 
-  private BigDecimal value;
+  private BigDecimal value = BigDecimal.ZERO;
   private Long currency;
 
 }

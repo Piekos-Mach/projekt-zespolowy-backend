@@ -16,7 +16,7 @@ public class UpdateOfferForm {
   private Long owner;
   private String title;
   private String text;
-  private UpdatePriceForm price;
+  private UpdatePriceForm price = new UpdatePriceForm();
   private List<String> images = Lists.newArrayList();
 
 }

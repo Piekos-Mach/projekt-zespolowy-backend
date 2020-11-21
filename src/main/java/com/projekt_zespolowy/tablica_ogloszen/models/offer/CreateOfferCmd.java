@@ -18,7 +18,7 @@ public class CreateOfferCmd {
   private Long owner;
   private String title;
   private String text;
-  private CreatePriceCmd price;
+  private CreatePriceCmd price = new CreatePriceCmd();
   private List<CreateImageCmd> images = Lists.newArrayList();
   private LocalDateTime creationDate = LocalDateTime.now();
   private OfferStatus status = OFFER_STATUS.ACTIVE.toOfferStatus();

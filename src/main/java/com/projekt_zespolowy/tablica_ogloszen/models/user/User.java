@@ -15,6 +15,8 @@ import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "user")
@@ -30,7 +32,8 @@ public class User {
 
   @ManyToOne
   @JoinColumn(name = "user_type_id")
-  private UserType type;
+  @Fetch(value = FetchMode.JOIN)
+  private UserType type = new UserType();
 
   @Column(name = "name")
   private String name;
@@ -42,6 +45,7 @@ public class User {
   private String mail;
 
   @OneToMany(mappedBy = "owner")
+  @Fetch(value = FetchMode.SUBSELECT)
   private List<Offer> offers = Lists.newArrayList();
 
   public void setOffers(List<Offer> offers) {

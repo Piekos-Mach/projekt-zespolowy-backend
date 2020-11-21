@@ -16,10 +16,10 @@ import lombok.NoArgsConstructor;
 public class Price {
 
   @Column(name = "price_value")
-  private BigDecimal value;
+  private BigDecimal value = BigDecimal.ZERO;
 
   @ManyToOne
   @JoinColumn(name = "currency_id")
-  private Currency currency;
+  private Currency currency = new Currency();
 
 }

@@ -23,6 +23,8 @@ import javax.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
@@ -39,7 +41,8 @@ public class Offer {
 
   @ManyToOne
   @JoinColumn(name = "owning_user_id")
-  private User owner;
+  @Fetch(value = FetchMode.JOIN)
+  private User owner = new User();
 
   @Column(name = "title")
   private String title;
@@ -58,10 +61,11 @@ public class Offer {
           joinColumns = @JoinColumn(name = "price_currency_id")),
   })
   @Embedded
-  private Price price;
+  private Price price = new Price();
 
   @OneToMany(mappedBy = "offer", orphanRemoval = true, cascade = {CascadeType.REMOVE,
       CascadeType.PERSIST})
+  @Fetch(value = FetchMode.SUBSELECT)
   private List<Image> images = Lists.newArrayList();
 
   @DateTimeFormat(iso = ISO.DATE_TIME)
@@ -70,11 +74,13 @@ public class Offer {
 
   @ManyToOne
   @JoinColumn(name = "status")
-  private OfferStatus status;
+  @Fetch(value = FetchMode.JOIN)
+  private OfferStatus status = new OfferStatus();
 
   @ManyToOne
   @JoinColumn(name = "type")
-  private OfferType type;
+  @Fetch(value = FetchMode.JOIN)
+  private OfferType type = new OfferType();
 
   public void setImages(List<Image> images) {
     for (Image image : images) {

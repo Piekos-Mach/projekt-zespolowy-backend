@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PriceView {
 
-  private BigDecimal value;
-  private BasicView currency;
+  private BigDecimal value = BigDecimal.ZERO;
+  private BasicView currency = new BasicView();
 
 }

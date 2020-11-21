@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @Data
 public class CreateImageForm {
 
-  private String content = "";
+  private String content;
 
 }
