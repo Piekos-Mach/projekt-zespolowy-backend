@@ -1,4 +1,4 @@
-package com.projekt_zespolowy.tablica_ogloszen.repositories;
+package com.projekt_zespolowy.tablica_ogloszen.repositories.offer;
 
 import com.projekt_zespolowy.tablica_ogloszen.mappers.ImageMapper;
 import com.projekt_zespolowy.tablica_ogloszen.models.basic.BasicView;
@@ -7,8 +7,9 @@ import com.projekt_zespolowy.tablica_ogloszen.models.image.ImageView;
 import com.projekt_zespolowy.tablica_ogloszen.models.offer.Offer;
 import com.projekt_zespolowy.tablica_ogloszen.models.offer.OfferListView;
 import com.projekt_zespolowy.tablica_ogloszen.models.price.PriceView;
-import com.projekt_zespolowy.tablica_ogloszen.query_factories.ImageQueryFactory;
-import com.projekt_zespolowy.tablica_ogloszen.query_factories.OfferQueryFactory;
+import com.projekt_zespolowy.tablica_ogloszen.query.factories.ImageQueryFactory;
+import com.projekt_zespolowy.tablica_ogloszen.query.factories.OfferQueryFactory;
+import com.projekt_zespolowy.tablica_ogloszen.repositories.BasicRepository;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQuery;
@@ -22,7 +23,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-public class OfferRepositoryImpl extends BasicRepository implements CustomOfferRepository {
+public class CustomOfferRepositoryImpl extends BasicRepository implements CustomOfferRepository {
 
     private final ImageMapper imageMapper;
 
@@ -51,7 +52,6 @@ public class OfferRepositoryImpl extends BasicRepository implements CustomOfferR
                                                         OfferQueryFactory.priceCurrencyName()
                                                 )
                                         ),
-                                        // tu cos od zdjec
                                         OfferQueryFactory.creationDate()
                                 ))
                         .from(OfferQueryFactory.offer())

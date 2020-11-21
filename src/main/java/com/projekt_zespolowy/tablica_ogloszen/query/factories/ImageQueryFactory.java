@@ -1,4 +1,4 @@
-package com.projekt_zespolowy.tablica_ogloszen.query_factories;
+package com.projekt_zespolowy.tablica_ogloszen.query.factories;
 
 import com.projekt_zespolowy.tablica_ogloszen.models.image.QImage;
 import com.querydsl.core.types.dsl.NumberPath;

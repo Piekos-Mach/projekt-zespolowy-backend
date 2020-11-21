@@ -1,4 +1,4 @@
-package com.projekt_zespolowy.tablica_ogloszen.query_factories;
+package com.projekt_zespolowy.tablica_ogloszen.query.factories;
 
 import com.projekt_zespolowy.tablica_ogloszen.models.offer.QOffer;
 import com.querydsl.core.types.dsl.DateTimePath;
@@ -10,56 +10,58 @@ import java.time.LocalDateTime;
 
 public class OfferQueryFactory {
 
+    private static final QOffer entityPath = QOffer.offer;
+
     public static QOffer offer() {
-        return QOffer.offer;
+        return entityPath;
     }
 
     public static NumberPath<Long> id() {
-        return QOffer.offer.id;
+        return entityPath.id;
     }
 
     public static NumberPath<Long> ownerId() {
-        return QOffer.offer.owner.id;
+        return entityPath.owner.id;
     }
 
     public static StringPath ownerName() {
-        return QOffer.offer.owner.name;
+        return entityPath.owner.name;
     }
 
     public static NumberPath<Long> ownerTypeId() {
-        return QOffer.offer.owner.type.id;
+        return entityPath.owner.type.id;
     }
 
     public static StringPath ownerTypeName() {
-        return QOffer.offer.owner.type.name;
+        return entityPath.owner.type.name;
     }
 
     public static StringPath ownerMail() {
-        return QOffer.offer.owner.mail;
+        return entityPath.owner.mail;
     }
 
     public static StringPath title() {
-        return QOffer.offer.title;
+        return entityPath.title;
     }
 
     public static StringPath text() {
-        return QOffer.offer.text;
+        return entityPath.text;
     }
 
     public static NumberPath<BigDecimal> priceValue() {
-        return QOffer.offer.price.value;
+        return entityPath.price.value;
     }
 
     public static NumberPath<Long> priceCurrencyId() {
-        return QOffer.offer.price.currency.id;
+        return entityPath.price.currency.id;
     }
 
     public static StringPath priceCurrencyName() {
-        return QOffer.offer.price.currency.name;
+        return entityPath.price.currency.name;
     }
 
     public static DateTimePath<LocalDateTime> creationDate() {
-        return QOffer.offer.creationDate;
+        return entityPath.creationDate;
     }
 
 }

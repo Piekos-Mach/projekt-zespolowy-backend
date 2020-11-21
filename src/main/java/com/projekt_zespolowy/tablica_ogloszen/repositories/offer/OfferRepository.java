@@ -1,7 +1,8 @@
-package com.projekt_zespolowy.tablica_ogloszen.repositories;
+package com.projekt_zespolowy.tablica_ogloszen.repositories.offer;
 
 import com.projekt_zespolowy.tablica_ogloszen.models.offer.Offer;
 import com.projekt_zespolowy.tablica_ogloszen.models.offer.QOffer;
+import com.projekt_zespolowy.tablica_ogloszen.repositories.CustomQueryDslRepositoryExtension;
 import com.querydsl.core.types.dsl.DateTimePath;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
@@ -10,10 +11,12 @@ import org.springframework.data.querydsl.binding.QuerydslBindings;
 
 import java.time.LocalDateTime;
 
-public interface OfferRepository extends JpaRepository<Offer, Long>,
+public interface OfferRepository extends
+        JpaRepository<Offer, Long>,
+        QuerydslBinderCustomizer<QOffer>,
         QuerydslPredicateExecutor<Offer>,
-        QueryDslRepositoryExtension<Offer, QOffer>,
-        QuerydslBinderCustomizer<QOffer> {
+        CustomQueryDslRepositoryExtension<Offer, QOffer>,
+        CustomOfferRepository {
 
     @Override
     default void customize(QuerydslBindings querydslBindings, QOffer qOffer) {
