@@ -1,5 +1,6 @@
 package com.projekt_zespolowy.tablica_ogloszen.mappers;
 
+import com.projekt_zespolowy.tablica_ogloszen.models.image.Image;
 import com.projekt_zespolowy.tablica_ogloszen.models.offer.Offer;
 import com.projekt_zespolowy.tablica_ogloszen.models.offer.OfferStatus;
 import com.projekt_zespolowy.tablica_ogloszen.models.offer.OfferType;
@@ -33,10 +34,6 @@ public abstract class MapperClassService {
     }
 
     public Long currencyToLong(Currency entity, @TargetType Class<Long> type) {
-        return entity == null ? null : entity.getId();
-    }
-
-    public Long imageToLong(Currency entity, @TargetType Class<Long> type) {
         return entity == null ? null : entity.getId();
     }
 
