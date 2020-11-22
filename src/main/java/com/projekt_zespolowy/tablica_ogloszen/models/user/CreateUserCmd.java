@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CreateUserCmd {
 
-  private String name;
-  private String password;
-  private String mail;
-  private UserType type = USER_TYPE.CUSTOMER.toUserType();
+    private String name;
+    private String password;
+    private String mail;
+    private UserType type = USER_TYPE.CUSTOMER.toUserType();
 
 }

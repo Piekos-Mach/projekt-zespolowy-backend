@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserView {
 
-  private Long id;
-  private String name;
-  private BasicView type = new BasicView();
-  private String mail;
+    private Long id;
+    private String name;
+    private BasicView type = new BasicView();
+    private String mail;
 
 }
