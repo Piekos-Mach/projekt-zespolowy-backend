@@ -1,30 +1,30 @@
-package com.projekt_zespolowy.tablica_ogloszen.handlers.command;
+package com.projekt_zespolowy.tablica_ogloszen.handlers.query.user;
 
 import com.projekt_zespolowy.tablica_ogloszen.mappers.UserMapper;
-import com.projekt_zespolowy.tablica_ogloszen.models.user.CreateUserCmd;
 import com.projekt_zespolowy.tablica_ogloszen.models.user.User;
 import com.projekt_zespolowy.tablica_ogloszen.models.user.UserView;
+import com.projekt_zespolowy.tablica_ogloszen.query.models.user.FindUserQuery;
 import com.projekt_zespolowy.tablica_ogloszen.repositories.user.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-public class CreateUserHandler {
+public class ReadUserViewHandler {
 
     private final UserRepository repository;
     private final UserMapper mapper;
 
-    @Transactional
-    public UserView handle(CreateUserCmd cmd) {
+    public UserView handle(FindUserQuery query) {
 
-        User entity = mapper.createCmdToEntity(cmd);
-        entity = repository.save(entity);
-        UserView view = mapper.entityToView(entity);
+        List<User> entities = (List<User>) this.repository.findAll(query.getPredicate());
+        User entity = entities.size() == 1 ? entities.get(0) : new User();
+        UserView viewModel = this.mapper.entityToView(entity);
 
-        return view;
+        return viewModel;
     }
 
 }

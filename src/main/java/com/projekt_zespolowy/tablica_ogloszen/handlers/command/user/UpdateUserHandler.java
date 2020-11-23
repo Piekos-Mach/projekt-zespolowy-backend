@@ -1,4 +1,4 @@
-package com.projekt_zespolowy.tablica_ogloszen.handlers.command;
+package com.projekt_zespolowy.tablica_ogloszen.handlers.command.user;
 
 import com.projekt_zespolowy.tablica_ogloszen.mappers.UserMapper;
 import com.projekt_zespolowy.tablica_ogloszen.models.user.CreateUserCmd;

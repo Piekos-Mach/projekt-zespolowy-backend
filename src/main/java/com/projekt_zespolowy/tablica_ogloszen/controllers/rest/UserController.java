@@ -1,11 +1,11 @@
 package com.projekt_zespolowy.tablica_ogloszen.controllers.rest;
 
-import com.projekt_zespolowy.tablica_ogloszen.handlers.command.CreateUserHandler;
-import com.projekt_zespolowy.tablica_ogloszen.handlers.command.DeleteUserHandler;
-import com.projekt_zespolowy.tablica_ogloszen.handlers.command.UpdateUserHandler;
-import com.projekt_zespolowy.tablica_ogloszen.handlers.query.BuildCreateUserFormHandler;
-import com.projekt_zespolowy.tablica_ogloszen.handlers.query.BuildUpdateUserFormHandler;
-import com.projekt_zespolowy.tablica_ogloszen.handlers.query.ReadUserViewHandler;
+import com.projekt_zespolowy.tablica_ogloszen.handlers.command.user.CreateUserHandler;
+import com.projekt_zespolowy.tablica_ogloszen.handlers.command.user.DeleteUserHandler;
+import com.projekt_zespolowy.tablica_ogloszen.handlers.command.user.UpdateUserHandler;
+import com.projekt_zespolowy.tablica_ogloszen.handlers.query.user.BuildCreateUserFormHandler;
+import com.projekt_zespolowy.tablica_ogloszen.handlers.query.user.BuildUpdateUserFormHandler;
+import com.projekt_zespolowy.tablica_ogloszen.handlers.query.user.ReadUserViewHandler;
 import com.projekt_zespolowy.tablica_ogloszen.models.user.*;
 import com.projekt_zespolowy.tablica_ogloszen.query.models.user.FindUserQuery;
 import com.projekt_zespolowy.tablica_ogloszen.validation.DefaultSequence;

@@ -1,4 +1,4 @@
-package com.projekt_zespolowy.tablica_ogloszen.handlers.query;
+package com.projekt_zespolowy.tablica_ogloszen.handlers.query.user;
 
 import com.projekt_zespolowy.tablica_ogloszen.mappers.UserMapper;
 import com.projekt_zespolowy.tablica_ogloszen.models.user.UpdateUserForm;
