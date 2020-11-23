@@ -4,10 +4,8 @@ import com.projekt_zespolowy.tablica_ogloszen.service.Deserializer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 @AllArgsConstructor
-@RequiredArgsConstructor
 @NoArgsConstructor
 @Data
 public class ImageView implements Deserializer {

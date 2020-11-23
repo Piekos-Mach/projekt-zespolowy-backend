@@ -1,14 +1,6 @@
 package com.projekt_zespolowy.tablica_ogloszen.predicate.models.image;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.projekt_zespolowy.tablica_ogloszen.predicate.models.Predicate;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class ImagePredicate {
-
-    private Long id;
-
+public class ImagePredicate extends Predicate {
 }

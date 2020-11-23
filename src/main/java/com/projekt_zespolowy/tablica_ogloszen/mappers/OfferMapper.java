@@ -10,7 +10,7 @@ import java.util.List;
         uses = {
                 MapperClassService.class,
                 MapperResolverService.class,
-                Mapper.class,
+                ImageMapper.class,
                 UserMapper.class,
                 PriceMapper.class
         },

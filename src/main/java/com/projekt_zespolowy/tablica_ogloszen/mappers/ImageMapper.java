@@ -7,7 +7,6 @@ import com.projekt_zespolowy.tablica_ogloszen.service.Deserializer;
 import com.projekt_zespolowy.tablica_ogloszen.service.Serializer;
 import org.mapstruct.*;
 
-import java.io.*;
 import java.util.List;
 
 @org.mapstruct.Mapper(
@@ -20,7 +19,7 @@ import java.util.List;
                 PriceMapper.class
         },
         injectionStrategy = InjectionStrategy.CONSTRUCTOR)
-public abstract class Mapper implements Serializer, Deserializer {
+public abstract class ImageMapper implements Serializer, Deserializer {
 
     @Named(value = "imageCmdToEntity")
     @Mappings({
@@ -35,9 +34,11 @@ public abstract class Mapper implements Serializer, Deserializer {
     public abstract ImageView entityToView(Image entity);
 
     @Named(value = "byteImageToString")
-    public String byteImageToString(byte[] content) throws IOException, ClassNotFoundException {
+    public String byteImageToString(byte[] content) {
 
-        return deserialize(content);
+        String result = deserialize(content);
+
+        return result;
     }
 
     @IterableMapping(qualifiedByName = "imageToView")
@@ -49,12 +50,17 @@ public abstract class Mapper implements Serializer, Deserializer {
     @Named(value = "stringImageToByte")
     public byte[] stringImageToByte(String content) {
 
-        return serialize(content);
+        byte[] result = serialize(content);
+
+        return result;
     }
 
     @Named(value = "imageToString")
-    public String entityToString(Image entity) throws IOException, ClassNotFoundException {
-        return this.byteImageToString(entity.getContent());
+    public String entityToString(Image entity) {
+
+        String result = this.byteImageToString(entity.getContent());
+
+        return result;
     }
 
     @IterableMapping(qualifiedByName = "imageToString")

@@ -7,7 +7,7 @@ import com.projekt_zespolowy.tablica_ogloszen.handlers.query.user.BuildCreateUse
 import com.projekt_zespolowy.tablica_ogloszen.handlers.query.user.BuildUpdateUserFormHandler;
 import com.projekt_zespolowy.tablica_ogloszen.handlers.query.user.ReadUserViewHandler;
 import com.projekt_zespolowy.tablica_ogloszen.models.user.*;
-import com.projekt_zespolowy.tablica_ogloszen.predicate.models.user.FindUserQuery;
+import com.projekt_zespolowy.tablica_ogloszen.predicate.models.user.UserPredicate;
 import com.projekt_zespolowy.tablica_ogloszen.validation.DefaultSequence;
 import com.querydsl.core.types.Predicate;
 import lombok.AllArgsConstructor;
@@ -56,17 +56,17 @@ public class UserController {
     }
 
     @GetMapping(value = "/rd")
-    public ResponseEntity<UserView> readDetails(@QuerydslPredicate(root = User.class) Predicate predicate) {
+    public ResponseEntity<UserView> readDetails(@RequestBody UserPredicate predicate) {
 
-        UserView viewModel = this.readDetailsHandler.handle(new FindUserQuery(predicate));
+        UserView viewModel = this.readDetailsHandler.handle(predicate);
 
         return ResponseEntity.ok(viewModel);
     }
 
     @GetMapping(value = "/buf")
-    public ResponseEntity<UpdateUserForm> buildUpdateForm(@QuerydslPredicate(root = User.class) Predicate predicate) {
+    public ResponseEntity<UpdateUserForm> buildUpdateForm(@RequestBody UserPredicate predicate) {
 
-        UpdateUserForm form = this.buildUpdateFormHandler.handle(new FindUserQuery(predicate));
+        UpdateUserForm form = this.buildUpdateFormHandler.handle(predicate);
 
         return ResponseEntity.ok(form);
     }

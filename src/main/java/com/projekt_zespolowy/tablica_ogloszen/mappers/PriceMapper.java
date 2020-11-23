@@ -8,7 +8,7 @@ import org.mapstruct.*;
         uses = {
                 MapperClassService.class,
                 MapperResolverService.class,
-                Mapper.class,
+                ImageMapper.class,
                 UserMapper.class,
                 OfferMapper.class
         },

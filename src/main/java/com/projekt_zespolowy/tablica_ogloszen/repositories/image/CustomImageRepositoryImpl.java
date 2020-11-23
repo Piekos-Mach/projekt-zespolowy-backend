@@ -9,7 +9,7 @@ import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
-public class CustomRepositoryImpl
+public class CustomImageRepositoryImpl
         extends BasicRepository
         implements CustomImageRepository, Deserializer {
 

@@ -8,8 +8,8 @@ import com.projekt_zespolowy.tablica_ogloszen.handlers.query.offer.BuildUpdateOf
 import com.projekt_zespolowy.tablica_ogloszen.handlers.query.offer.ReadOfferPageHandler;
 import com.projekt_zespolowy.tablica_ogloszen.handlers.query.offer.ReadOfferViewHandler;
 import com.projekt_zespolowy.tablica_ogloszen.models.offer.*;
-import com.projekt_zespolowy.tablica_ogloszen.predicate.models.offer.FindOfferPageQuery;
-import com.projekt_zespolowy.tablica_ogloszen.predicate.models.offer.FindOfferQuery;
+import com.projekt_zespolowy.tablica_ogloszen.predicate.models.offer.OfferPagePredicate;
+import com.projekt_zespolowy.tablica_ogloszen.predicate.models.offer.OfferPredicate;
 import com.projekt_zespolowy.tablica_ogloszen.validation.DefaultSequence;
 import com.querydsl.core.types.Predicate;
 import lombok.AllArgsConstructor;
@@ -62,17 +62,17 @@ public class OfferController {
     }
 
     @GetMapping(value = "/rd")
-    public ResponseEntity<OfferView> readDetails(@QuerydslPredicate(root = Offer.class) Predicate predicate) {
+    public ResponseEntity<OfferView> readDetails(@RequestBody OfferPredicate predicate) {
 
-        OfferView viewModel = this.readDetailsHandler.handle(new FindOfferQuery(predicate));
+        OfferView viewModel = this.readDetailsHandler.handle(predicate);
 
         return ResponseEntity.ok(viewModel);
     }
 
     @GetMapping(value = "/buf")
-    public ResponseEntity<UpdateOfferForm> buildUpdateForm(@QuerydslPredicate(root = Offer.class) Predicate predicate) {
+    public ResponseEntity<UpdateOfferForm> buildUpdateForm(@RequestBody OfferPredicate predicate) {
 
-        UpdateOfferForm form = this.buildUpdateFormHandler.handle(new FindOfferQuery(predicate));
+        UpdateOfferForm form = this.buildUpdateFormHandler.handle(predicate);
 
         return ResponseEntity.ok(form);
     }
@@ -90,7 +90,7 @@ public class OfferController {
             @QuerydslPredicate(root = Offer.class) Predicate predicate,
             @PageableDefault(sort = {"id"}, value = 20) Pageable pageable) {
 
-        FindOfferPageQuery query = new FindOfferPageQuery(predicate, pageable);
+        OfferPagePredicate query = new OfferPagePredicate(predicate, pageable);
         Page<OfferPageView> pageView = this.readOfferPageHandler.handle(query);
 
         return ResponseEntity.ok(pageView);

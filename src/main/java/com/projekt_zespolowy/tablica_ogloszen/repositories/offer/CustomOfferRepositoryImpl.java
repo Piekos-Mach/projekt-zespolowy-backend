@@ -1,6 +1,6 @@
 package com.projekt_zespolowy.tablica_ogloszen.repositories.offer;
 
-import com.projekt_zespolowy.tablica_ogloszen.mappers.Mapper;
+import com.projekt_zespolowy.tablica_ogloszen.mappers.ImageMapper;
 import com.projekt_zespolowy.tablica_ogloszen.models.basic.BasicView;
 import com.projekt_zespolowy.tablica_ogloszen.models.image.Image;
 import com.projekt_zespolowy.tablica_ogloszen.models.image.ImageView;
@@ -27,7 +27,7 @@ import java.util.List;
 @Repository
 public class CustomOfferRepositoryImpl extends BasicRepository implements CustomOfferRepository {
 
-    private final Mapper imageMapper;
+    private final ImageMapper imageMapper;
 
     @Override
     public Page<OfferPageView> findPage(Predicate predicate, Pageable pageable) {
