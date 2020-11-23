@@ -61,10 +61,17 @@ public abstract class ImageMapper {
 
     @Named(value = "imageToString")
     public String entityToString(Image entity) throws IOException, ClassNotFoundException {
-     return this.byteImageToString(entity.getContent());
+        return this.byteImageToString(entity.getContent());
     }
 
     @IterableMapping(qualifiedByName = "imageToString")
     public abstract List<String> entitiesToStrings(List<Image> entities);
+
+    public ImageView entitiesToMiniatureView(List<Image> entities) {
+
+        ImageView viewModel = entities != null && entities.size() >= 1 ? entityToView(entities.get(0)) : new ImageView();
+
+        return viewModel;
+    }
 
 }

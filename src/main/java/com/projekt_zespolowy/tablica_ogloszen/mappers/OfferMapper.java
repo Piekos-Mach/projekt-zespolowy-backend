@@ -1,7 +1,5 @@
 package com.projekt_zespolowy.tablica_ogloszen.mappers;
 
-import com.projekt_zespolowy.tablica_ogloszen.models.image.Image;
-import com.projekt_zespolowy.tablica_ogloszen.models.image.ImageView;
 import com.projekt_zespolowy.tablica_ogloszen.models.offer.*;
 import org.mapstruct.*;
 
@@ -26,10 +24,10 @@ public abstract class OfferMapper {
     public abstract List<OfferView> entitiesToViews(List<Offer> entities);
 
     @Named(value = "offerToListView")
-    public abstract OfferListView entityToListView(Offer entity);
+    public abstract OfferPageView entityToListView(Offer entity);
 
     @IterableMapping(qualifiedByName = "offerToListView")
-    public abstract List<OfferListView> entityToListView(List<Offer> entities);
+    public abstract List<OfferPageView> entityToListView(List<Offer> entities);
 
     public abstract UpdateOfferForm entityToUpdateForm(Offer entity);
 
