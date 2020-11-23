@@ -1,6 +1,6 @@
-package com.projekt_zespolowy.tablica_ogloszen.query.models.offer;
+package com.projekt_zespolowy.tablica_ogloszen.predicate.models.offer;
 
-import com.projekt_zespolowy.tablica_ogloszen.query.models.PredicateQuery;
+import com.projekt_zespolowy.tablica_ogloszen.predicate.models.PredicateQuery;
 import com.querydsl.core.types.Predicate;
 
 import javax.validation.constraints.NotNull;

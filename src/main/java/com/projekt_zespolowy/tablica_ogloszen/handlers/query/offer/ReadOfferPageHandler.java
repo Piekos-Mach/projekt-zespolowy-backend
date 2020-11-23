@@ -1,7 +1,7 @@
 package com.projekt_zespolowy.tablica_ogloszen.handlers.query.offer;
 
 import com.projekt_zespolowy.tablica_ogloszen.models.offer.OfferPageView;
-import com.projekt_zespolowy.tablica_ogloszen.query.models.offer.FindOfferPageQuery;
+import com.projekt_zespolowy.tablica_ogloszen.predicate.models.offer.FindOfferPageQuery;
 import com.projekt_zespolowy.tablica_ogloszen.repositories.offer.OfferRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

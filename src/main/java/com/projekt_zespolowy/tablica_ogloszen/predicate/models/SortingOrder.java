@@ -1,4 +1,4 @@
-package com.projekt_zespolowy.tablica_ogloszen.query.models;
+package com.projekt_zespolowy.tablica_ogloszen.predicate.models;
 
 import com.google.common.collect.Lists;
 import lombok.AllArgsConstructor;

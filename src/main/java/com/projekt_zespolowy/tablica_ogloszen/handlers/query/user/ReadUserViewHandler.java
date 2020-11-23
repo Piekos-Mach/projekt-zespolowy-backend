@@ -3,7 +3,7 @@ package com.projekt_zespolowy.tablica_ogloszen.handlers.query.user;
 import com.projekt_zespolowy.tablica_ogloszen.mappers.UserMapper;
 import com.projekt_zespolowy.tablica_ogloszen.models.user.User;
 import com.projekt_zespolowy.tablica_ogloszen.models.user.UserView;
-import com.projekt_zespolowy.tablica_ogloszen.query.models.user.FindUserQuery;
+import com.projekt_zespolowy.tablica_ogloszen.predicate.models.user.FindUserQuery;
 import com.projekt_zespolowy.tablica_ogloszen.repositories.user.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

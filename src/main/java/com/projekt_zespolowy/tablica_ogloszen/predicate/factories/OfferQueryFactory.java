@@ -1,4 +1,4 @@
-package com.projekt_zespolowy.tablica_ogloszen.query.factories;
+package com.projekt_zespolowy.tablica_ogloszen.predicate.factories;
 
 import com.projekt_zespolowy.tablica_ogloszen.models.offer.QOffer;
 import com.querydsl.core.types.dsl.DateTimePath;

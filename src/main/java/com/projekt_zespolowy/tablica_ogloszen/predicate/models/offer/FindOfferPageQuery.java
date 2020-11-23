@@ -1,6 +1,6 @@
-package com.projekt_zespolowy.tablica_ogloszen.query.models.offer;
+package com.projekt_zespolowy.tablica_ogloszen.predicate.models.offer;
 
-import com.projekt_zespolowy.tablica_ogloszen.query.models.PredicatePageableQuery;
+import com.projekt_zespolowy.tablica_ogloszen.predicate.models.PredicatePageableQuery;
 import com.querydsl.core.types.Predicate;
 import org.springframework.data.domain.Pageable;
 

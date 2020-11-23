@@ -5,12 +5,12 @@ import org.mapstruct.*;
 
 import java.util.List;
 
-@Mapper(
+@org.mapstruct.Mapper(
         componentModel = "spring",
         uses = {
                 MapperClassService.class,
                 MapperResolverService.class,
-                ImageMapper.class,
+                Mapper.class,
                 UserMapper.class,
                 PriceMapper.class
         },

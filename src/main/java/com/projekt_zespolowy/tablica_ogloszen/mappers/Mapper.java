@@ -3,12 +3,14 @@ package com.projekt_zespolowy.tablica_ogloszen.mappers;
 import com.projekt_zespolowy.tablica_ogloszen.models.image.CreateImageCmd;
 import com.projekt_zespolowy.tablica_ogloszen.models.image.Image;
 import com.projekt_zespolowy.tablica_ogloszen.models.image.ImageView;
+import com.projekt_zespolowy.tablica_ogloszen.service.Deserializer;
+import com.projekt_zespolowy.tablica_ogloszen.service.Serializer;
 import org.mapstruct.*;
 
 import java.io.*;
 import java.util.List;
 
-@Mapper(
+@org.mapstruct.Mapper(
         componentModel = "spring",
         uses = {
                 MapperClassService.class,
@@ -18,7 +20,7 @@ import java.util.List;
                 PriceMapper.class
         },
         injectionStrategy = InjectionStrategy.CONSTRUCTOR)
-public abstract class ImageMapper {
+public abstract class Mapper implements Serializer, Deserializer {
 
     @Named(value = "imageCmdToEntity")
     @Mappings({
@@ -35,11 +37,7 @@ public abstract class ImageMapper {
     @Named(value = "byteImageToString")
     public String byteImageToString(byte[] content) throws IOException, ClassNotFoundException {
 
-        try (ByteArrayInputStream byteStream = new ByteArrayInputStream(content); ObjectInputStream objStream = new ObjectInputStream(byteStream)) {
-            return (String) objStream.readObject();
-        } catch (Exception e) {
-            return "";
-        }
+        return deserialize(content);
     }
 
     @IterableMapping(qualifiedByName = "imageToView")
@@ -49,14 +47,9 @@ public abstract class ImageMapper {
     public abstract List<Image> createCmdsToEntities(List<CreateImageCmd> cmds);
 
     @Named(value = "stringImageToByte")
-    public byte[] stringImageToByte(String content) throws IOException, ClassNotFoundException {
+    public byte[] stringImageToByte(String content) {
 
-        try (ByteArrayOutputStream byteStream = new ByteArrayOutputStream(); ObjectOutputStream objStream = new ObjectOutputStream(byteStream)) {
-            objStream.writeObject(content);
-            return byteStream.toByteArray();
-        } catch (Exception e) {
-            return new byte[]{};
-        }
+        return serialize(content);
     }
 
     @Named(value = "imageToString")

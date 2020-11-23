@@ -1,14 +1,14 @@
 package com.projekt_zespolowy.tablica_ogloszen.repositories.offer;
 
-import com.projekt_zespolowy.tablica_ogloszen.mappers.ImageMapper;
+import com.projekt_zespolowy.tablica_ogloszen.mappers.Mapper;
 import com.projekt_zespolowy.tablica_ogloszen.models.basic.BasicView;
 import com.projekt_zespolowy.tablica_ogloszen.models.image.Image;
 import com.projekt_zespolowy.tablica_ogloszen.models.image.ImageView;
 import com.projekt_zespolowy.tablica_ogloszen.models.offer.Offer;
 import com.projekt_zespolowy.tablica_ogloszen.models.offer.OfferPageView;
 import com.projekt_zespolowy.tablica_ogloszen.models.price.PriceView;
-import com.projekt_zespolowy.tablica_ogloszen.query.factories.ImageQueryFactory;
-import com.projekt_zespolowy.tablica_ogloszen.query.factories.OfferQueryFactory;
+import com.projekt_zespolowy.tablica_ogloszen.predicate.factories.ImageQueryFactory;
+import com.projekt_zespolowy.tablica_ogloszen.predicate.factories.OfferQueryFactory;
 import com.projekt_zespolowy.tablica_ogloszen.repositories.BasicRepository;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.Projections;
@@ -20,7 +20,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -28,7 +27,7 @@ import java.util.List;
 @Repository
 public class CustomOfferRepositoryImpl extends BasicRepository implements CustomOfferRepository {
 
-    private final ImageMapper imageMapper;
+    private final Mapper imageMapper;
 
     @Override
     public Page<OfferPageView> findPage(Predicate predicate, Pageable pageable) {

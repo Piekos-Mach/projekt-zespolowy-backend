@@ -1,17 +1,14 @@
 package com.projekt_zespolowy.tablica_ogloszen.mappers;
 
-import com.projekt_zespolowy.tablica_ogloszen.models.offer.*;
 import com.projekt_zespolowy.tablica_ogloszen.models.price.*;
 import org.mapstruct.*;
 
-import java.util.List;
-
-@Mapper(
+@org.mapstruct.Mapper(
         componentModel = "spring",
         uses = {
                 MapperClassService.class,
                 MapperResolverService.class,
-                ImageMapper.class,
+                Mapper.class,
                 UserMapper.class,
                 OfferMapper.class
         },

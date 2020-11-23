@@ -3,12 +3,12 @@ package com.projekt_zespolowy.tablica_ogloszen.mappers;
 import com.projekt_zespolowy.tablica_ogloszen.models.user.*;
 import org.mapstruct.*;
 
-@Mapper(
+@org.mapstruct.Mapper(
         componentModel = "spring",
         uses = {
                 MapperClassService.class,
                 MapperResolverService.class,
-                ImageMapper.class,
+                Mapper.class,
                 OfferMapper.class,
                 PriceMapper.class
         },

@@ -8,8 +8,8 @@ import com.projekt_zespolowy.tablica_ogloszen.handlers.query.offer.BuildUpdateOf
 import com.projekt_zespolowy.tablica_ogloszen.handlers.query.offer.ReadOfferPageHandler;
 import com.projekt_zespolowy.tablica_ogloszen.handlers.query.offer.ReadOfferViewHandler;
 import com.projekt_zespolowy.tablica_ogloszen.models.offer.*;
-import com.projekt_zespolowy.tablica_ogloszen.query.models.offer.FindOfferPageQuery;
-import com.projekt_zespolowy.tablica_ogloszen.query.models.offer.FindOfferQuery;
+import com.projekt_zespolowy.tablica_ogloszen.predicate.models.offer.FindOfferPageQuery;
+import com.projekt_zespolowy.tablica_ogloszen.predicate.models.offer.FindOfferQuery;
 import com.projekt_zespolowy.tablica_ogloszen.validation.DefaultSequence;
 import com.querydsl.core.types.Predicate;
 import lombok.AllArgsConstructor;

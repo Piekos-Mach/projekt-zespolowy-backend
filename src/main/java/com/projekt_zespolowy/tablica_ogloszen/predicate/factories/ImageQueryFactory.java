@@ -1,6 +1,7 @@
-package com.projekt_zespolowy.tablica_ogloszen.query.factories;
+package com.projekt_zespolowy.tablica_ogloszen.predicate.factories;
 
 import com.projekt_zespolowy.tablica_ogloszen.models.image.QImage;
+import com.querydsl.core.types.dsl.ArrayPath;
 import com.querydsl.core.types.dsl.NumberPath;
 
 
@@ -18,6 +19,10 @@ public class ImageQueryFactory {
 
     public static NumberPath<Long> offerId() {
         return entityPath.offer.id;
+    }
+
+    public static ArrayPath<byte[], Byte> content() {
+        return entityPath.content;
     }
 
 }

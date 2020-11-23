@@ -1,6 +1,6 @@
 package com.projekt_zespolowy.tablica_ogloszen.repositories;
 
-import com.projekt_zespolowy.tablica_ogloszen.query.models.SortingOrder;
+import com.projekt_zespolowy.tablica_ogloszen.predicate.models.SortingOrder;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.EntityPathBase;
 import org.springframework.data.domain.Page;

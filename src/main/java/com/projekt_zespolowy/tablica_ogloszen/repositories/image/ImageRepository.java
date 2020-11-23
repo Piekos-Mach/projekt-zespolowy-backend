@@ -6,5 +6,6 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
 public interface ImageRepository extends
         JpaRepository<Image, Long>,
-        QuerydslPredicateExecutor<Image> {
+        QuerydslPredicateExecutor<Image>,
+        CustomImageRepository {
 }

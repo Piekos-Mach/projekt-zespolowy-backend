@@ -7,7 +7,7 @@ import com.projekt_zespolowy.tablica_ogloszen.handlers.query.user.BuildCreateUse
 import com.projekt_zespolowy.tablica_ogloszen.handlers.query.user.BuildUpdateUserFormHandler;
 import com.projekt_zespolowy.tablica_ogloszen.handlers.query.user.ReadUserViewHandler;
 import com.projekt_zespolowy.tablica_ogloszen.models.user.*;
-import com.projekt_zespolowy.tablica_ogloszen.query.models.user.FindUserQuery;
+import com.projekt_zespolowy.tablica_ogloszen.predicate.models.user.FindUserQuery;
 import com.projekt_zespolowy.tablica_ogloszen.validation.DefaultSequence;
 import com.querydsl.core.types.Predicate;
 import lombok.AllArgsConstructor;

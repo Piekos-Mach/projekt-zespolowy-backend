@@ -1,6 +1,6 @@
 package com.projekt_zespolowy.tablica_ogloszen.repositories;
 
-import com.projekt_zespolowy.tablica_ogloszen.query.models.SortingOrder;
+import com.projekt_zespolowy.tablica_ogloszen.predicate.models.SortingOrder;
 import com.querydsl.core.types.Expression;
 import com.querydsl.core.types.Path;
 import com.querydsl.core.types.Predicate;
