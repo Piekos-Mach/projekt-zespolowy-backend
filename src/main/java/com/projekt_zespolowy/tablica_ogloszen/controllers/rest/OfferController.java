@@ -9,8 +9,9 @@ import com.projekt_zespolowy.tablica_ogloszen.handlers.query.offer.ReadOfferPage
 import com.projekt_zespolowy.tablica_ogloszen.handlers.query.offer.ReadOfferViewHandler;
 import com.projekt_zespolowy.tablica_ogloszen.models.offer.*;
 import com.projekt_zespolowy.tablica_ogloszen.predicate.models.offer.OfferPagePredicate;
-import com.projekt_zespolowy.tablica_ogloszen.predicate.models.offer.OfferPredicate;
+import com.projekt_zespolowy.tablica_ogloszen.predicate.models.offer.OfferIdPredicate;
 import com.projekt_zespolowy.tablica_ogloszen.validation.DefaultSequence;
+import com.projekt_zespolowy.tablica_ogloszen.validation.FirstLevel;
 import com.querydsl.core.types.Predicate;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotNull;
+
 @Validated(DefaultSequence.class)
 @RestController
 @RequestMapping("offers")
@@ -32,7 +35,7 @@ public class OfferController {
     private final CreateOfferHandler createHandler;
     private final UpdateOfferHandler updateHandler;
     private final DeleteOfferHandler deleteHandler;
-    private final ReadOfferViewHandler readDetailsHandler;
+    private final ReadOfferViewHandler readViewHandler;
     private final BuildUpdateOfferFormHandler buildUpdateFormHandler;
     private final BuildCreateOfferFormHandler buildCreateFormHandler;
     private final ReadOfferPageHandler readOfferPageHandler;
@@ -61,16 +64,16 @@ public class OfferController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @GetMapping(value = "/rd")
-    public ResponseEntity<OfferView> readDetails(@RequestBody OfferPredicate predicate) {
+    @GetMapping(value = "/rv")
+    public ResponseEntity<OfferView> readView(@Validated(DefaultSequence.class) @RequestBody OfferIdPredicate predicate) {
 
-        OfferView viewModel = this.readDetailsHandler.handle(predicate);
+        OfferView viewModel = this.readViewHandler.handle(predicate);
 
         return ResponseEntity.ok(viewModel);
     }
 
     @GetMapping(value = "/buf")
-    public ResponseEntity<UpdateOfferForm> buildUpdateForm(@RequestBody OfferPredicate predicate) {
+    public ResponseEntity<UpdateOfferForm> buildUpdateForm(@Validated(DefaultSequence.class) @RequestBody OfferIdPredicate predicate) {
 
         UpdateOfferForm form = this.buildUpdateFormHandler.handle(predicate);
 
@@ -85,13 +88,17 @@ public class OfferController {
         return ResponseEntity.ok(form);
     }
 
-    @GetMapping(value = "/rp")
-    public ResponseEntity<Page<OfferPageView>> readPage(
-            @QuerydslPredicate(root = Offer.class) Predicate predicate,
-            @PageableDefault(sort = {"id"}, value = 20) Pageable pageable) {
+    @GetMapping(value = "/rpv")
+    public ResponseEntity<Page<OfferPageView>> readPageView(
+            @Validated(DefaultSequence.class)
+            @NotNull(message = "predicate.notNull", groups = FirstLevel.class)
+            @QuerydslPredicate(root = Offer.class)
+                    Predicate predicate,
+            @PageableDefault(sort = {"id"}, value = 20)
+                    Pageable pageable) {
 
-        OfferPagePredicate query = new OfferPagePredicate(predicate, pageable);
-        Page<OfferPageView> pageView = this.readOfferPageHandler.handle(query);
+        OfferPagePredicate pagePredicate = new OfferPagePredicate(predicate, pageable);
+        Page<OfferPageView> pageView = this.readOfferPageHandler.handle(pagePredicate);
 
         return ResponseEntity.ok(pageView);
     }

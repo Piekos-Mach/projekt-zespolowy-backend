@@ -7,12 +7,10 @@ import com.projekt_zespolowy.tablica_ogloszen.handlers.query.user.BuildCreateUse
 import com.projekt_zespolowy.tablica_ogloszen.handlers.query.user.BuildUpdateUserFormHandler;
 import com.projekt_zespolowy.tablica_ogloszen.handlers.query.user.ReadUserViewHandler;
 import com.projekt_zespolowy.tablica_ogloszen.models.user.*;
-import com.projekt_zespolowy.tablica_ogloszen.predicate.models.user.UserPredicate;
+import com.projekt_zespolowy.tablica_ogloszen.predicate.models.user.UserIdPredicate;
 import com.projekt_zespolowy.tablica_ogloszen.validation.DefaultSequence;
-import com.querydsl.core.types.Predicate;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -27,7 +25,7 @@ public class UserController {
     private final CreateUserHandler createHandler;
     private final UpdateUserHandler updateHandler;
     private final DeleteUserHandler deleteHandler;
-    private final ReadUserViewHandler readDetailsHandler;
+    private final ReadUserViewHandler readViewHandler;
     private final BuildUpdateUserFormHandler buildUpdateFormHandler;
     private final BuildCreateUserFormHandler buildCreateFormHandler;
 
@@ -55,16 +53,16 @@ public class UserController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @GetMapping(value = "/rd")
-    public ResponseEntity<UserView> readDetails(@RequestBody UserPredicate predicate) {
+    @GetMapping(value = "/rv")
+    public ResponseEntity<UserView> readView(@Validated(DefaultSequence.class) @RequestBody UserIdPredicate predicate) {
 
-        UserView viewModel = this.readDetailsHandler.handle(predicate);
+        UserView viewModel = this.readViewHandler.handle(predicate);
 
         return ResponseEntity.ok(viewModel);
     }
 
     @GetMapping(value = "/buf")
-    public ResponseEntity<UpdateUserForm> buildUpdateForm(@RequestBody UserPredicate predicate) {
+    public ResponseEntity<UpdateUserForm> buildUpdateForm(@Validated(DefaultSequence.class) @RequestBody UserIdPredicate predicate) {
 
         UpdateUserForm form = this.buildUpdateFormHandler.handle(predicate);
 

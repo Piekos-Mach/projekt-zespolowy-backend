@@ -14,9 +14,9 @@ public class ReadOfferPageHandler {
 
     private final OfferRepository repository;
 
-    public Page<OfferPageView> handle(OfferPagePredicate query) {
+    public Page<OfferPageView> handle(OfferPagePredicate pagePredicate) {
 
-        Page<OfferPageView> pageView = this.repository.findPage(query.getPredicate(), query.getPageable());
+        Page<OfferPageView> pageView = this.repository.findPage(pagePredicate.getPredicate(), pagePredicate.getPageable());
 
         return pageView;
     }

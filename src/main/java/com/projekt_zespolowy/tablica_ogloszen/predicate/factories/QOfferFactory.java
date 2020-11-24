@@ -8,7 +8,7 @@ import com.querydsl.core.types.dsl.StringPath;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public class OfferQueryFactory {
+public class QOfferFactory {
 
     private static final QOffer entityPath = QOffer.offer;
 

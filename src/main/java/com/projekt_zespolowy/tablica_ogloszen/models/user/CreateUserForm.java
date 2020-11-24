@@ -9,8 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CreateUserForm {
 
-  private String name;
-  private String password;
-  private String mail;
+    private String name = "";
+
+    private String password = "";
+
+    private String mail = "";
 
 }

@@ -7,8 +7,8 @@ import com.projekt_zespolowy.tablica_ogloszen.models.image.ImageView;
 import com.projekt_zespolowy.tablica_ogloszen.models.offer.Offer;
 import com.projekt_zespolowy.tablica_ogloszen.models.offer.OfferPageView;
 import com.projekt_zespolowy.tablica_ogloszen.models.price.PriceView;
-import com.projekt_zespolowy.tablica_ogloszen.predicate.factories.ImageQueryFactory;
-import com.projekt_zespolowy.tablica_ogloszen.predicate.factories.OfferQueryFactory;
+import com.projekt_zespolowy.tablica_ogloszen.predicate.factories.QImageFactory;
+import com.projekt_zespolowy.tablica_ogloszen.predicate.factories.QOfferFactory;
 import com.projekt_zespolowy.tablica_ogloszen.repositories.BasicRepository;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.Projections;
@@ -38,25 +38,25 @@ public class CustomOfferRepositoryImpl extends BasicRepository implements Custom
                         .select(
                                 Projections.constructor(
                                         OfferPageView.class,
-                                        OfferQueryFactory.id(),
+                                        QOfferFactory.id(),
                                         Projections.constructor(
                                                 BasicView.class,
-                                                OfferQueryFactory.ownerId(),
-                                                OfferQueryFactory.ownerName()
+                                                QOfferFactory.ownerId(),
+                                                QOfferFactory.ownerName()
                                         ),
-                                        OfferQueryFactory.title(),
-                                        OfferQueryFactory.text(),
+                                        QOfferFactory.title(),
+                                        QOfferFactory.text(),
                                         Projections.constructor(
                                                 PriceView.class,
-                                                OfferQueryFactory.priceValue(),
+                                                QOfferFactory.priceValue(),
                                                 Projections.constructor(BasicView.class,
-                                                        OfferQueryFactory.priceCurrencyId(),
-                                                        OfferQueryFactory.priceCurrencyName()
+                                                        QOfferFactory.priceCurrencyId(),
+                                                        QOfferFactory.priceCurrencyName()
                                                 )
                                         ),
-                                        OfferQueryFactory.creationDate()
+                                        QOfferFactory.creationDate()
                                 ))
-                        .from(OfferQueryFactory.offer())
+                        .from(QOfferFactory.offer())
                         .where(predicate);
         if (pageable != null) {
             query
@@ -64,7 +64,7 @@ public class CustomOfferRepositoryImpl extends BasicRepository implements Custom
                     .limit(pageable.getPageSize())
                     .offset(pageable.getPageNumber() * pageable.getPageSize());
         } else {
-            query.orderBy(OfferQueryFactory.id().asc());
+            query.orderBy(QOfferFactory.id().asc());
         }
         List<OfferPageView> data = this.getOneToManyRelations(query, queryFactory);
         long count = query.fetchCount();
@@ -89,7 +89,7 @@ public class CustomOfferRepositoryImpl extends BasicRepository implements Custom
 
     public List<ImageView> getImageViews(Long offerId, JPAQueryFactory queryFactory) {
 
-        List<Image> entities = queryFactory.selectFrom(ImageQueryFactory.image()).where(ImageQueryFactory.offerId().eq(offerId)).fetch();
+        List<Image> entities = queryFactory.selectFrom(QImageFactory.image()).where(QImageFactory.offerId().eq(offerId)).fetch();
         List<ImageView> views = imageMapper.entitiesToViews(entities);
 
         return views;

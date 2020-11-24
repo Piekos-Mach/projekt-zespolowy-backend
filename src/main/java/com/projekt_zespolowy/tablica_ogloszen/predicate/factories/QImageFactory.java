@@ -5,7 +5,7 @@ import com.querydsl.core.types.dsl.ArrayPath;
 import com.querydsl.core.types.dsl.NumberPath;
 
 
-public class ImageQueryFactory {
+public class QImageFactory {
 
     private final static QImage entityPath = QImage.image;
 

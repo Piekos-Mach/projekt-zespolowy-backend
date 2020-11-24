@@ -14,9 +14,13 @@ import lombok.NoArgsConstructor;
 public class CreateOfferForm {
 
   private Long owner;
-  private String title;
-  private String text;
+
+  private String title = "";
+
+  private String text = "";
+
   private CreatePriceCmd price = new CreatePriceCmd();
+
   private List<CreateImageCmd> images = Lists.newArrayList();
 
 }
