@@ -33,7 +33,7 @@ public class User {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_type_id")
+    @JoinColumn(name = "type")
     @Fetch(value = FetchMode.JOIN)
     private UserType type = new UserType();
 

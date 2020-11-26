@@ -7,20 +7,7 @@ import com.projekt_zespolowy.tablica_ogloszen.models.user.User;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import javax.persistence.AssociationOverride;
-import javax.persistence.AssociationOverrides;
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,6 +17,7 @@ import org.hibernate.annotations.FetchMode;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+@Table(name = "offer")
 @Entity
 @Data
 @AllArgsConstructor
@@ -42,7 +30,7 @@ public class Offer {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "owning_user_id")
+    @JoinColumn(name = "owning_user")
     @Fetch(value = FetchMode.JOIN)
     private User owner = new User();
 
@@ -60,7 +48,7 @@ public class Offer {
     @AssociationOverrides({
             @AssociationOverride(
                     name = "currency",
-                    joinColumns = @JoinColumn(name = "price_currency_id")),
+                    joinColumns = @JoinColumn(name = "price_currency")),
     })
     @Embedded
     private Price price = new Price();
