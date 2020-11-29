@@ -92,10 +92,8 @@ public class OfferController {
     public ResponseEntity<Page<OfferPageView>> readPageView(
             @Validated(DefaultSequence.class)
             @NotNull(message = "predicate.notNull", groups = FirstLevel.class)
-            @QuerydslPredicate(root = Offer.class)
-                    Predicate predicate,
-            @PageableDefault(sort = {"id"}, value = 20)
-                    Pageable pageable) {
+            @QuerydslPredicate(root = Offer.class) Predicate predicate,
+            @PageableDefault(sort = {"id"}, value = 5) Pageable pageable) {
 
         OfferPagePredicate pagePredicate = new OfferPagePredicate(predicate, pageable);
         Page<OfferPageView> pageView = this.readOfferPageHandler.handle(pagePredicate);

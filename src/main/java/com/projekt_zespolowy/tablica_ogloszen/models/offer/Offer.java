@@ -53,9 +53,9 @@ public class Offer {
     @Embedded
     private Price price = new Price();
 
-    @OneToMany(mappedBy = "offer", orphanRemoval = true, cascade = {CascadeType.REMOVE,
-            CascadeType.PERSIST})
-    @Fetch(value = FetchMode.SUBSELECT)
+    // TODO: Zamienic na lazy
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "offer", orphanRemoval = true, cascade = {CascadeType.ALL})
+//    @Fetch(value = FetchMode.SUBSELECT)
     private List<Image> images = Lists.newArrayList();
 
     @DateTimeFormat(iso = ISO.DATE_TIME)
@@ -73,10 +73,23 @@ public class Offer {
     private OfferType type = new OfferType();
 
     public void setImages(List<Image> images) {
-        this.images.clear();
+
+        this.getImages().clear();
         for (Image image : images) {
-            image.setOffer(this);
-            this.images.add(image);
+            this.addImage(image);
+        }
+    }
+
+    public void addImage(Image image) {
+
+        image.setOffer(this);
+        this.getImages().add(image);
+    }
+
+    public void addImages(List<Image> images) {
+
+        for (Image image : images) {
+            this.addImage(image);
         }
     }
 

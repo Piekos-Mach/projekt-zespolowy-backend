@@ -17,18 +17,18 @@ import org.hibernate.annotations.FetchMode;
 @Data
 public class Image {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "image_id")
-  private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "image_id")
+    private Long id;
 
-  @Lob
-  @Column(name = "content")
-  private byte[] content = new byte[]{};
+    @Lob
+    @Column(name = "content")
+    private byte[] content = new byte[]{};
 
-  @ManyToOne
-  @JoinColumn(name = "offer")
-  @Fetch(value = FetchMode.JOIN)
-  private Offer offer = new Offer();
+    @ManyToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "offer")
+    @Fetch(value = FetchMode.JOIN)
+    private Offer offer = new Offer();
 
 }

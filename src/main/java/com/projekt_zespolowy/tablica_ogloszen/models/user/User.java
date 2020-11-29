@@ -4,15 +4,7 @@ import com.google.common.collect.Lists;
 import com.projekt_zespolowy.tablica_ogloszen.models.offer.Offer;
 
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -46,8 +38,9 @@ public class User {
     @Column(name = "mail")
     private String mail;
 
-    @OneToMany(mappedBy = "owner")
-    @Fetch(value = FetchMode.SUBSELECT)
+    // TODO: zamienic na lazy
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+//    @Fetch(value = FetchMode.SUBSELECT)
     private List<Offer> offers = Lists.newArrayList();
 
     public void setOffers(List<Offer> offers) {
