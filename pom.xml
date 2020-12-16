@@ -95,7 +95,20 @@
 			<version>1.18.16</version>
 			<scope>provided</scope>
 		</dependency>
-
+		<dependency>
+			<artifactId>spring-boot-starter-security</artifactId>
+			<groupId>org.springframework.boot</groupId>
+		</dependency>
+		<dependency>
+			<artifactId>java-jwt</artifactId>
+			<groupId>com.auth0</groupId>
+			<version>3.11.0</version>
+		</dependency>
+		<dependency>
+			<artifactId>jjwt</artifactId>
+			<groupId>io.jsonwebtoken</groupId>
+			<version>0.9.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>

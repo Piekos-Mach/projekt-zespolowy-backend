@@ -1,5 +1,8 @@
+INSERT INTO public.role (role_id, name)
+VALUES (1, 'USER'), (2, 'GUEST'), (4, 'ADMIN');
+
 INSERT INTO public.dictionary_user_type (user_type_id, name)
-VALUES (1, 'CUSTOMER'), (2, 'GUEST'), (3, 'ADMIN');
+VALUES (1, 'CUSTOMER'), (2, 'GUEST'), (4, 'ADMIN');
 
 INSERT INTO public.dictionary_currency (currency_id, name)
 VALUES (1, 'PLN');
@@ -10,10 +13,10 @@ VALUES (1, 'ACTIVE'), (2, 'ARCHIVAL');
 INSERT INTO public.dictionary_offer_type (offer_type_id, name)
 VALUES (1, 'ITEM'), (2, 'SERVICE');
 
-INSERT INTO public.user (user_id, type, name, password, mail)
-VALUES (1, 3, 'a', '$2a$10$Dd/ozXZuhTBlbqqQ/gsBE.zOExw.KBpCU67jOWXELYetXDPiYU/TW', 'a@mail.com'),
-       (2, 1, 'user', '$2a$10$sCZFpfyp3NgiN02yjkrvB.GGVgXtgKcdWBRkBNAPqUiVgapkxzAZ6', 'user@mail.com'),
-       (3, 1, 'user1', '$2a$10$hMCcue/xXYEV4fy39t2ZLeKbGAGaheneyFsQ9wxMlLpyckbE1fAQa', 'user1@mail.com');
+INSERT INTO public.user (user_id, type, name, password, mail, role)
+VALUES (1, 4, 'a', '$2a$10$Dd/ozXZuhTBlbqqQ/gsBE.zOExw.KBpCU67jOWXELYetXDPiYU/TW', 'a@mail.com', 4),
+       (2, 1, 'user', '$2a$10$sCZFpfyp3NgiN02yjkrvB.GGVgXtgKcdWBRkBNAPqUiVgapkxzAZ6', 'user@mail.com', 1),
+       (3, 1, 'user1', '$2a$10$hMCcue/xXYEV4fy39t2ZLeKbGAGaheneyFsQ9wxMlLpyckbE1fAQa', 'user1@mail.com', 1);
 
 INSERT INTO public.offer (offer_id, owning_user, title, text, price_value, price_currency, creation_date, status, type)
 VALUES (1, 1, 'Przedmiot nr 1', 'Pellentesque diam volutpat commodo sed egestas. Lacus vestibulum sed arcu non odio euismod lacinia. Ancidunt id aliquet risus.', 1, 1, '2020-05-01 12:30:00', 1, 1),

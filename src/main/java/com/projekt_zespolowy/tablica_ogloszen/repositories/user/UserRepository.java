@@ -12,6 +12,8 @@ public interface UserRepository extends
         QuerydslPredicateExecutor<User>,
         QuerydslBinderCustomizer<QUser> {
 
+    public abstract User findByName(String name);
+
     @Override
     default void customize(QuerydslBindings querydslBindings, QUser qUser) {
     }
