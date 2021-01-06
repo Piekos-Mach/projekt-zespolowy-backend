@@ -71,6 +71,14 @@ public class OfferController {
         return ResponseEntity.ok(viewModel);
     }
 
+    @GetMapping(value = "/rvl")
+    public ResponseEntity<OfferViewL> readViewL(@Validated(DefaultSequence.class) @RequestBody OfferIdPredicate predicate) {
+
+        OfferViewL viewModel = this.readViewHandler.handleL(predicate);
+
+        return ResponseEntity.ok(viewModel);
+    }
+
     @GetMapping(value = "/buf")
     public ResponseEntity<UpdateOfferForm> buildUpdateForm(@Validated(DefaultSequence.class) @RequestBody OfferIdPredicate predicate) {
 

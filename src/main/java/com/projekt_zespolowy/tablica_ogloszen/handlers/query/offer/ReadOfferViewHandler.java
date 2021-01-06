@@ -3,6 +3,7 @@ package com.projekt_zespolowy.tablica_ogloszen.handlers.query.offer;
 import com.projekt_zespolowy.tablica_ogloszen.mappers.OfferMapper;
 import com.projekt_zespolowy.tablica_ogloszen.models.offer.Offer;
 import com.projekt_zespolowy.tablica_ogloszen.models.offer.OfferView;
+import com.projekt_zespolowy.tablica_ogloszen.models.offer.OfferViewL;
 import com.projekt_zespolowy.tablica_ogloszen.predicate.models.offer.OfferIdPredicate;
 import com.projekt_zespolowy.tablica_ogloszen.repositories.offer.OfferRepository;
 import lombok.AllArgsConstructor;
@@ -22,6 +23,13 @@ public class ReadOfferViewHandler {
         OfferView viewModel = this.mapper.entityToView(entity);
 
         return viewModel;
+    }
+
+    public OfferViewL handleL(OfferIdPredicate predicate) {
+
+        OfferViewL view = this.repository.findViewById(predicate.getId());
+
+        return view;
     }
 
 }

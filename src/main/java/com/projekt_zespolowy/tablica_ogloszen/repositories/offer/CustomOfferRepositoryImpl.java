@@ -4,10 +4,9 @@ import com.projekt_zespolowy.tablica_ogloszen.mappers.ImageMapper;
 import com.projekt_zespolowy.tablica_ogloszen.models.basic.BasicView;
 import com.projekt_zespolowy.tablica_ogloszen.models.image.Image;
 import com.projekt_zespolowy.tablica_ogloszen.models.image.ImageView;
-import com.projekt_zespolowy.tablica_ogloszen.models.offer.Offer;
-import com.projekt_zespolowy.tablica_ogloszen.models.offer.OfferPageView;
-import com.projekt_zespolowy.tablica_ogloszen.models.offer.OfferPageViewL;
+import com.projekt_zespolowy.tablica_ogloszen.models.offer.*;
 import com.projekt_zespolowy.tablica_ogloszen.models.price.PriceView;
+import com.projekt_zespolowy.tablica_ogloszen.models.user.UserView;
 import com.projekt_zespolowy.tablica_ogloszen.predicate.factories.QImageFactory;
 import com.projekt_zespolowy.tablica_ogloszen.predicate.factories.QOfferFactory;
 import com.projekt_zespolowy.tablica_ogloszen.repositories.BasicRepository;
@@ -21,6 +20,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
 @AllArgsConstructor(onConstructor = @__(@Autowired))
@@ -160,6 +160,60 @@ public class CustomOfferRepositoryImpl extends BasicRepository implements Custom
         Long imageId = query.fetchFirst();
 
         return imageId;
+    }
+
+    public OfferViewL findViewById(Long id) {
+
+        JPAQueryFactory queryFactory = new JPAQueryFactory(entityManager);
+        JPAQuery<OfferViewL> query =
+                queryFactory
+                        .select(
+                                Projections.constructor(
+                                        OfferViewL.class,
+                                        QOfferFactory.id(),
+                                        Projections.constructor(
+                                                UserView.class,
+                                                QOfferFactory.ownerId(),
+                                                QOfferFactory.ownerName(),
+                                                Projections.constructor(
+                                                        BasicView.class,
+                                                        QOfferFactory.ownerTypeId(),
+                                                        QOfferFactory.ownerTypeName()
+                                                ),
+                                                QOfferFactory.ownerMail()
+                                        ),
+                                        QOfferFactory.title(),
+                                        QOfferFactory.text(),
+                                        Projections.constructor(
+                                                PriceView.class,
+                                                QOfferFactory.priceValue(),
+                                                Projections.constructor(BasicView.class,
+                                                        QOfferFactory.priceCurrencyId(),
+                                                        QOfferFactory.priceCurrencyName()
+                                                )
+                                        ),
+                                        QOfferFactory.creationDate()
+                                ))
+                        .from(QOfferFactory.offer())
+                        .where(QOfferFactory.id().eq(id));
+
+        OfferViewL view = query.fetchFirst();
+        List<Long> images = getImagesId(id, queryFactory);
+        view.setImages(images);
+
+        return view;
+
+    }
+
+    public List<Long> getImagesId(Long offerId, JPAQueryFactory queryFactory) {
+
+        JPAQuery<Long> query = queryFactory
+                .select(QImageFactory.id())
+                .from(QImageFactory.image())
+                .where(QImageFactory.offerId().eq(offerId));
+        List<Long> imagesId = query.fetch();
+
+        return imagesId;
     }
 
 }
