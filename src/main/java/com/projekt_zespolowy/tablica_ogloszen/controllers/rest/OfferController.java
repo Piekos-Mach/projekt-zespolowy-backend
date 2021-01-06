@@ -21,10 +21,8 @@ import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.constraints.NotNull;
 
 @Validated(DefaultSequence.class)
@@ -101,5 +99,17 @@ public class OfferController {
 
         return ResponseEntity.ok(pageView);
     }
+
+//    @PostMapping(value = "/test/{a}")
+//    public ResponseEntity test() throws EntityNotFoundException {
+////            @Positive(message = "{num0}", groups = FirstLevel.class) @PathVariable("a") int a,
+////            @Positive(message = "{num0}", groups = FirstLevel.class) @RequestParam(value = "b") int b,
+////            @Positive(message = "{num1}", groups = FirstLevel.class) @RequestParam(value = "c") int c){
+////            @Validated(DefaultSequence.class) @RequestBody ValidTest validTest) {
+//
+//        throw new EntityNotFoundException();
+//
+////        return new ResponseEntity(HttpStatus.OK);
+//    }
 
 }
