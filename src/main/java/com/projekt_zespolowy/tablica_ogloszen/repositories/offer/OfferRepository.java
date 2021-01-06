@@ -2,7 +2,6 @@ package com.projekt_zespolowy.tablica_ogloszen.repositories.offer;
 
 import com.projekt_zespolowy.tablica_ogloszen.models.offer.Offer;
 import com.projekt_zespolowy.tablica_ogloszen.models.offer.QOffer;
-import com.projekt_zespolowy.tablica_ogloszen.repositories.CustomQueryDslRepositoryExtension;
 import com.querydsl.core.types.dsl.DateTimePath;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
@@ -15,7 +14,6 @@ public interface OfferRepository extends
         JpaRepository<Offer, Long>,
         QuerydslBinderCustomizer<QOffer>,
         QuerydslPredicateExecutor<Offer>,
-        CustomQueryDslRepositoryExtension<Offer, QOffer>,
         CustomOfferRepository {
 
     @Override

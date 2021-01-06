@@ -100,6 +100,19 @@ public class OfferController {
         return ResponseEntity.ok(pageView);
     }
 
+    @GetMapping(value = "/rpvl")
+    public ResponseEntity<Page<OfferPageViewL>> readPageViewL(
+            @Validated(DefaultSequence.class)
+            @NotNull(message = "predicate.notNull", groups = FirstLevel.class)
+            @QuerydslPredicate(root = Offer.class) Predicate predicate,
+            @PageableDefault(sort = {"id"}, value = 5) Pageable pageable) {
+
+        OfferPagePredicate pagePredicate = new OfferPagePredicate(predicate, pageable);
+        Page<OfferPageViewL> pageView = this.readOfferPageHandler.handleL(pagePredicate);
+
+        return ResponseEntity.ok(pageView);
+    }
+
 //    @PostMapping(value = "/test/{a}")
 //    public ResponseEntity test() throws EntityNotFoundException {
 ////            @Positive(message = "{num0}", groups = FirstLevel.class) @PathVariable("a") int a,

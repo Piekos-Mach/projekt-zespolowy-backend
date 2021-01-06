@@ -13,14 +13,13 @@ public interface OrderSpecifierRepository {
         String className = klass.getSimpleName();
         final String orderVariable =
                 String.valueOf(Character.toLowerCase(className.charAt(0))).concat(className.substring(1));
-
-        return pageable.getSort().stream()
-                .map(
-                        order ->
-                                new OrderSpecifier(
+        OrderSpecifier[] orderSpecifiers = pageable.getSort().stream()
+                .map(order -> new OrderSpecifier(
                                         Order.valueOf(order.getDirection().toString()),
                                         new PathBuilder(klass, orderVariable).get(order.getProperty())))
                 .toArray(OrderSpecifier[]::new);
+
+        return orderSpecifiers;
     }
 
 }

@@ -1,9 +1,7 @@
 package com.projekt_zespolowy.tablica_ogloszen.repositories.image;
 
 import com.projekt_zespolowy.tablica_ogloszen.models.image.ImageView;
-import com.projekt_zespolowy.tablica_ogloszen.models.image.QImage;
 import com.projekt_zespolowy.tablica_ogloszen.predicate.factories.QImageFactory;
-import com.projekt_zespolowy.tablica_ogloszen.predicate.factories.QOfferFactory;
 import com.projekt_zespolowy.tablica_ogloszen.repositories.BasicRepository;
 import com.projekt_zespolowy.tablica_ogloszen.service.Deserializer;
 import com.querydsl.core.types.Predicate;
@@ -46,7 +44,7 @@ public class CustomImageRepositoryImpl
                                         QImageFactory.content(),
                                         QImageFactory.offerId()
                                 ))
-                        .from(QOfferFactory.offer())
+                        .from(QImageFactory.image())
                         .where(predicate);
 
         return query;

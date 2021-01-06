@@ -6,6 +6,7 @@ import com.projekt_zespolowy.tablica_ogloszen.models.image.Image;
 import com.projekt_zespolowy.tablica_ogloszen.models.image.ImageView;
 import com.projekt_zespolowy.tablica_ogloszen.models.offer.Offer;
 import com.projekt_zespolowy.tablica_ogloszen.models.offer.OfferPageView;
+import com.projekt_zespolowy.tablica_ogloszen.models.offer.OfferPageViewL;
 import com.projekt_zespolowy.tablica_ogloszen.models.price.PriceView;
 import com.projekt_zespolowy.tablica_ogloszen.predicate.factories.QImageFactory;
 import com.projekt_zespolowy.tablica_ogloszen.predicate.factories.QOfferFactory;
@@ -20,8 +21,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
-
-import javax.persistence.TypedQuery;
 import java.util.List;
 
 @AllArgsConstructor(onConstructor = @__(@Autowired))
@@ -94,6 +93,73 @@ public class CustomOfferRepositoryImpl extends BasicRepository implements Custom
         List<ImageView> views = imageMapper.entitiesToViews(entities);
 
         return views;
+    }
+
+    @Override
+    public Page<OfferPageViewL> findPageL(Predicate predicate, Pageable pageable) {
+
+        JPAQueryFactory queryFactory = new JPAQueryFactory(entityManager);
+        JPAQuery<OfferPageViewL> query =
+                queryFactory
+                        .select(
+                                Projections.constructor(
+                                        OfferPageViewL.class,
+                                        QOfferFactory.id(),
+                                        Projections.constructor(
+                                                BasicView.class,
+                                                QOfferFactory.ownerId(),
+                                                QOfferFactory.ownerName()
+                                        ),
+                                        QOfferFactory.title(),
+                                        QOfferFactory.text(),
+                                        Projections.constructor(
+                                                PriceView.class,
+                                                QOfferFactory.priceValue(),
+                                                Projections.constructor(BasicView.class,
+                                                        QOfferFactory.priceCurrencyId(),
+                                                        QOfferFactory.priceCurrencyName()
+                                                )
+                                        ),
+                                        QOfferFactory.creationDate()
+                                ))
+                        .from(QOfferFactory.offer())
+                        .where(predicate);
+        if (pageable != null) {
+            query
+                    .orderBy(getOrderSpecifiers(pageable, Offer.class))
+                    .limit(pageable.getPageSize())
+                    .offset(pageable.getPageNumber() * pageable.getPageSize());
+        } else {
+            query.orderBy(QOfferFactory.id().asc());
+        }
+        List<OfferPageViewL> data = query.fetch();
+        data = getMiniaturesId(data, queryFactory);
+        long count = query.fetchCount();
+
+        return new PageImpl<>(data, pageable, count);
+    }
+
+    protected List<OfferPageViewL> getMiniaturesId(
+            List<OfferPageViewL> offersPage, JPAQueryFactory queryFactory) {
+
+        for (OfferPageViewL offer : offersPage) {
+            Long offerId = offer.getId();
+            Long miniatureId = this.getMiniatureId(offerId, queryFactory);
+            offer.setMiniature(miniatureId);
+        }
+
+        return offersPage;
+    }
+
+    public Long getMiniatureId(Long offerId, JPAQueryFactory queryFactory) {
+
+        JPAQuery<Long> query = queryFactory
+                .select(QImageFactory.id())
+                .from(QImageFactory.image())
+                .where(QImageFactory.offerId().eq(offerId));
+        Long imageId = query.fetchFirst();
+
+        return imageId;
     }
 
 }
