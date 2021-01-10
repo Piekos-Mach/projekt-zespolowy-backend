@@ -64,7 +64,7 @@ public class OfferController {
     }
 
     @GetMapping(value = "/rv")
-    public ResponseEntity<OfferView> readView(@Validated(DefaultSequence.class) @RequestBody OfferIdPredicate predicate) {
+    public ResponseEntity<OfferView> readView(@Validated(DefaultSequence.class) OfferIdPredicate predicate) {
 
         OfferView viewModel = this.readViewHandler.handle(predicate);
 
@@ -72,7 +72,7 @@ public class OfferController {
     }
 
     @GetMapping(value = "/rvl")
-    public ResponseEntity<OfferViewL> readViewL(@Validated(DefaultSequence.class) @RequestBody OfferIdPredicate predicate) {
+    public ResponseEntity<OfferViewL> readViewL(@Validated(DefaultSequence.class) OfferIdPredicate predicate) {
 
         OfferViewL viewModel = this.readViewHandler.handleL(predicate);
 
@@ -80,7 +80,7 @@ public class OfferController {
     }
 
     @GetMapping(value = "/buf")
-    public ResponseEntity<UpdateOfferForm> buildUpdateForm(@Validated(DefaultSequence.class) @RequestBody OfferIdPredicate predicate) {
+    public ResponseEntity<UpdateOfferForm> buildUpdateForm(@Validated(DefaultSequence.class) OfferIdPredicate predicate) {
 
         UpdateOfferForm form = this.buildUpdateFormHandler.handle(predicate);
 

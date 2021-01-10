@@ -32,7 +32,7 @@ public class ImageController {
     private final ReadImagesHandler readImagesHandler;
 
     @GetMapping(value = "/rv")
-    public ResponseEntity<ImageView> readView(@Validated(DefaultSequence.class) @RequestBody ImageIdPredicate predicate) {
+    public ResponseEntity<ImageView> readView(@Validated(DefaultSequence.class) ImageIdPredicate predicate) {
 
         ImageView viewModel = this.readDetailsHandler.handle(predicate);
 

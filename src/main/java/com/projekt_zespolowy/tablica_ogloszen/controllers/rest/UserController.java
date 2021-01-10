@@ -57,7 +57,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/rv")
-    public ResponseEntity<UserView> readView(@Validated(DefaultSequence.class) @RequestBody UserIdPredicate predicate) {
+    public ResponseEntity<UserView> readView(@Validated(DefaultSequence.class) UserIdPredicate predicate) {
 
         UserView viewModel = this.readViewHandler.handle(predicate);
 
@@ -65,7 +65,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/buf")
-    public ResponseEntity<UpdateUserForm> buildUpdateForm(@Validated(DefaultSequence.class) @RequestBody UserIdPredicate predicate) {
+    public ResponseEntity<UpdateUserForm> buildUpdateForm(@Validated(DefaultSequence.class) UserIdPredicate predicate) {
 
         UpdateUserForm form = this.buildUpdateFormHandler.handle(predicate);
 
