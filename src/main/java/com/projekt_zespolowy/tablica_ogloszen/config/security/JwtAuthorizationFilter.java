@@ -3,11 +3,9 @@ package com.projekt_zespolowy.tablica_ogloszen.config.security;
 import static com.projekt_zespolowy.tablica_ogloszen.config.security.SecurityConstants.HEADER_STRING;
 import static com.projekt_zespolowy.tablica_ogloszen.config.security.SecurityConstants.SECRET;
 import static com.projekt_zespolowy.tablica_ogloszen.config.security.SecurityConstants.TOKEN_PREFIX;
-
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import java.io.IOException;
-import java.time.LocalDateTime;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

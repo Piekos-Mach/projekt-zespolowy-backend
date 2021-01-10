@@ -1,10 +1,5 @@
 package com.projekt_zespolowy.tablica_ogloszen.config.security;
 
-import static com.projekt_zespolowy.tablica_ogloszen.config.security.SecurityConstants.EXPIRATION_TIME;
-import static com.projekt_zespolowy.tablica_ogloszen.config.security.SecurityConstants.HEADER_STRING;
-import static com.projekt_zespolowy.tablica_ogloszen.config.security.SecurityConstants.SECRET;
-import static com.projekt_zespolowy.tablica_ogloszen.config.security.SecurityConstants.TOKEN_PREFIX;
-
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,9 +14,9 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import static com.projekt_zespolowy.tablica_ogloszen.config.security.SecurityConstants.*;
 
 @Slf4j
-//@AllArgsConstructor
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
   private final AuthenticationManager authenticationManager;
@@ -33,7 +28,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     this.authenticationManager = authenticationManager;
     this.objectMapper = objectMapper;
-    setFilterProcessesUrl("/login");
+    setFilterProcessesUrl(LOG_IN_URL);
   }
 
   @Override
