@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Constraint(validatedBy = {OfferExistsImpl.class})
+@Constraint(validatedBy = {UserExistsImpl.class})
 public @interface UserExists {
 
     String message() default "{entity.exists}";
