@@ -29,7 +29,7 @@ public class Offer {
     @Column(name = "offer_id")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "owning_user")
     @Fetch(value = FetchMode.JOIN)
     private User owner = new User();

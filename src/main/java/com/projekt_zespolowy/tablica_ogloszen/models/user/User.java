@@ -55,7 +55,7 @@ public class User implements UserDetails {
 //    @Fetch(value = FetchMode.SUBSELECT)
   private List<Offer> offers = Lists.newArrayList();
 
-  @ManyToOne
+  @ManyToOne(cascade = {CascadeType.ALL})
   @JoinColumn(name = "role")
   @Fetch(value = FetchMode.JOIN)
   private Role role = new Role();
