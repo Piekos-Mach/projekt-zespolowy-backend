@@ -28,6 +28,7 @@ import javax.validation.constraints.NotNull;
 @Validated(DefaultSequence.class)
 @RestController
 @RequestMapping("offers")
+@CrossOrigin
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class OfferController {
 
