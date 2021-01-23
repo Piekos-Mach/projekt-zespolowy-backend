@@ -6,16 +6,25 @@ import com.projekt_zespolowy.tablica_ogloszen.handlers.command.user.UpdateUserHa
 import com.projekt_zespolowy.tablica_ogloszen.handlers.query.user.BuildCreateUserFormHandler;
 import com.projekt_zespolowy.tablica_ogloszen.handlers.query.user.BuildUpdateUserFormHandler;
 import com.projekt_zespolowy.tablica_ogloszen.handlers.query.user.ReadUserViewHandler;
-import com.projekt_zespolowy.tablica_ogloszen.models.user.*;
+import com.projekt_zespolowy.tablica_ogloszen.models.user.CreateUserCmd;
+import com.projekt_zespolowy.tablica_ogloszen.models.user.CreateUserForm;
+import com.projekt_zespolowy.tablica_ogloszen.models.user.DeleteUserCmd;
+import com.projekt_zespolowy.tablica_ogloszen.models.user.UpdateUserCmd;
+import com.projekt_zespolowy.tablica_ogloszen.models.user.UpdateUserForm;
+import com.projekt_zespolowy.tablica_ogloszen.models.user.UserView;
 import com.projekt_zespolowy.tablica_ogloszen.predicate.models.user.UserIdPredicate;
 import com.projekt_zespolowy.tablica_ogloszen.validation.DefaultSequence;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @Validated(DefaultSequence.class)
 @RestController
@@ -23,61 +32,65 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class UserController {
 
-    private final CreateUserHandler createHandler;
-    private final UpdateUserHandler updateHandler;
-    private final DeleteUserHandler deleteHandler;
-    private final ReadUserViewHandler readViewHandler;
-    private final BuildUpdateUserFormHandler buildUpdateFormHandler;
-    private final BuildCreateUserFormHandler buildCreateFormHandler;
+  private final CreateUserHandler createHandler;
+  private final UpdateUserHandler updateHandler;
+  private final DeleteUserHandler deleteHandler;
+  private final ReadUserViewHandler readViewHandler;
+  private final BuildUpdateUserFormHandler buildUpdateFormHandler;
+  private final BuildCreateUserFormHandler buildCreateFormHandler;
 
-    @PostMapping
-    public ResponseEntity<UserView> create(@Validated(DefaultSequence.class) @RequestBody CreateUserCmd cmd) {
+  @PostMapping
+  public ResponseEntity<UserView> create(
+      @Validated(DefaultSequence.class) @RequestBody CreateUserCmd cmd) {
 
-        UserView viewModel = this.createHandler.handle(cmd);
+    UserView viewModel = this.createHandler.handle(cmd);
 
-        return ResponseEntity.ok(viewModel);
-    }
+    return ResponseEntity.ok(viewModel);
+  }
 
-    // TODO: przyklad wymogu roli
+  // TODO: przyklad wymogu roli
 //    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
-    @PutMapping
-    public ResponseEntity<UserView> update(@Validated(DefaultSequence.class) @RequestBody UpdateUserCmd cmd) {
+  @PutMapping
+  public ResponseEntity<UserView> update(
+      @Validated(DefaultSequence.class) @RequestBody UpdateUserCmd cmd) {
 
-        UserView viewModel = this.updateHandler.handle(cmd);
+    UserView viewModel = this.updateHandler.handle(cmd);
 
-        return ResponseEntity.ok(viewModel);
-    }
+    return ResponseEntity.ok(viewModel);
+  }
 
-    @PostMapping(value = "/d")
-    public ResponseEntity delete(@Validated(DefaultSequence.class) @RequestBody DeleteUserCmd cmd) {
+  @PostMapping(value = "/d")
+  public ResponseEntity delete(@Validated(DefaultSequence.class) @RequestBody DeleteUserCmd cmd) {
 
-        this.deleteHandler.handle(cmd);
+    this.deleteHandler.handle(cmd);
 
-        return new ResponseEntity(HttpStatus.OK);
-    }
+    return new ResponseEntity(HttpStatus.OK);
+  }
 
-    @GetMapping(value = "/rv")
-    public ResponseEntity<UserView> readView(@Validated(DefaultSequence.class) UserIdPredicate predicate) {
+  @GetMapping(value = "/rv")
+  public ResponseEntity<UserView> readView(
+      @Validated(DefaultSequence.class) UserIdPredicate predicate) {
 
-        UserView viewModel = this.readViewHandler.handle(predicate);
+    UserView viewModel = this.readViewHandler.handle(predicate);
 
-        return ResponseEntity.ok(viewModel);
-    }
+    return ResponseEntity.ok(viewModel);
+  }
 
-    @GetMapping(value = "/buf")
-    public ResponseEntity<UpdateUserForm> buildUpdateForm(@Validated(DefaultSequence.class) UserIdPredicate predicate) {
+  @GetMapping(value = "/buf")
+  public ResponseEntity<UpdateUserForm> buildUpdateForm(
+      @Validated(DefaultSequence.class) UserIdPredicate predicate) {
 
-        UpdateUserForm form = this.buildUpdateFormHandler.handle(predicate);
+    UpdateUserForm form = this.buildUpdateFormHandler.handle(predicate);
 
-        return ResponseEntity.ok(form);
-    }
+    return ResponseEntity.ok(form);
+  }
 
-    @GetMapping(value = "/bcf")
-    public ResponseEntity<CreateUserForm> buildCreateForm() {
+  @GetMapping(value = "/bcf")
+  public ResponseEntity<CreateUserForm> buildCreateForm() {
 
-        CreateUserForm form = this.buildCreateFormHandler.handle();
+    CreateUserForm form = this.buildCreateFormHandler.handle();
 
-        return ResponseEntity.ok(form);
-    }
+    return ResponseEntity.ok(form);
+  }
 
 }

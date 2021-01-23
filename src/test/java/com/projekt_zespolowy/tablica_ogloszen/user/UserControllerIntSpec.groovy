@@ -14,20 +14,22 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.web.server.LocalServerPort
 import org.springframework.test.context.TestPropertySource
+import org.springframework.test.context.jdbc.Sql
+import org.springframework.test.context.jdbc.SqlGroup
+import org.springframework.test.context.jdbc.SqlMergeMode
 import org.springframework.web.context.WebApplicationContext
 import spock.lang.Specification
 import spock.lang.Unroll
-
 import static io.restassured.RestAssured.given
 import static org.hamcrest.Matchers.equalTo
 import static org.hamcrest.Matchers.not
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-//@SqlGroup([
-//        @Sql(scripts = ["classpath:sql/data.sql"], executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
-//])
+@SqlGroup([
+        @Sql(scripts = ["classpath:sql/test.sql"], executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+])
 @TestPropertySource(locations = "classpath:application.properties")
-//@SqlMergeMode(SqlMergeMode.MergeMode.MERGE)
+@SqlMergeMode(SqlMergeMode.MergeMode.MERGE)
 class UserControllerIntSpec extends Specification implements SecurityTrait {
 
     @LocalServerPort
@@ -217,7 +219,7 @@ class UserControllerIntSpec extends Specification implements SecurityTrait {
     void "delete user not passes"() {
         given:
         Map cmd = [
-                id         : id
+                id: id
         ]
 
 
@@ -240,11 +242,76 @@ class UserControllerIntSpec extends Specification implements SecurityTrait {
 
 
         where:
-        testName         || id       || statusCode || jsonResponse
-        "id null"        || null     || 400        || ["id", equalTo(["Wymagana encja nie istnieje"])]
-        "id 0"           || 0L       || 400        || ["id", equalTo(["Wymagana encja nie istnieje"])]
-        "id -1"          || -1L      || 400        || ["id", equalTo(["Wymagana encja nie istnieje"])]
-        "id 999999"      || 999999L  || 400        || ["id", equalTo(["Wymagana encja nie istnieje"])]
+        testName    || id      || statusCode || jsonResponse
+        "id null"   || null    || 400        || ["id", equalTo(["Wymagana encja nie istnieje"])]
+        "id 0"      || 0L      || 400        || ["id", equalTo(["Wymagana encja nie istnieje"])]
+        "id -1"     || -1L     || 400        || ["id", equalTo(["Wymagana encja nie istnieje"])]
+        "id 999999" || 999999L || 400        || ["id", equalTo(["Wymagana encja nie istnieje"])]
     }
+
+    @Unroll
+    void "read view user passes"() {
+        given:
+        Map cmd = [
+                id: id
+        ]
+
+        when:
+        Response result = given()
+                .accept(ContentType.JSON)
+                .contentType(ContentType.JSON)
+                .header(new Header("Authorization", jwtToken))
+                .body(cmd)
+                .when()
+                .get("/api/users/rv?id=" + cmd.id)
+
+        then:
+        result.then().statusCode(statusCode)
+        result.then().body(
+                "id", equalTo(2),
+                "name", not(null),
+                "mail", not(null),
+                "type", not(null),
+                "type.id", not(null),
+                "type.name", not(null)
+        )
+
+        where:
+        testName || id || statusCode || jsonResponse
+        "dobry1" || 2L || 200        || ""
+    }
+
+//    @Unroll
+//    void "read view user not passes"() {
+//        given:
+//        Map cmd = [
+//                id: id
+//        ]
+//
+//        when:
+//        Response result = given()
+//                .accept(ContentType.JSON)
+//                .contentType(ContentType.JSON)
+//                .header(new Header("Authorization", jwtToken))
+//                .body(cmd)
+//                .when()
+//                .post("/api/users/rv")
+//
+//        then:
+//        result.then().statusCode(statusCode)
+//        if (statusCode == 409) {
+//            result.body().print().contains("EntityNotFoundException")
+//        } else {
+//            result.then().body(jsonResponse[0] as String, jsonResponse[1] as Matcher<?>)
+//        }
+//
+//
+//        where:
+//        testName    || id      || statusCode || jsonResponse
+//        "id null"   || null    || 400        || ["id", equalTo(["Wymagana encja nie istnieje"])]
+//        "id 0"      || 0L      || 400        || ["id", equalTo(["Wymagana encja nie istnieje"])]
+//        "id -1"     || -1L     || 400        || ["id", equalTo(["Wymagana encja nie istnieje"])]
+//        "id 999999" || 999999L || 400        || ["id", equalTo(["Wymagana encja nie istnieje"])]
+//    }
 
 }
