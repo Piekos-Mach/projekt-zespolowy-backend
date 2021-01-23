@@ -189,4 +189,62 @@ class UserControllerIntSpec extends Specification implements SecurityTrait {
         "null mail"      || 1L      || "testName" || "testPassword" || "oldPassword" || null            || 400        || ["mail", equalTo(["Adres mail nie może być pusty"])]
     }
 
+    @Unroll
+    void "delete user passes"() {
+        given:
+        Map cmd = [
+                id: id
+        ]
+
+        when:
+        Response result = given()
+                .accept(ContentType.JSON)
+                .contentType(ContentType.JSON)
+                .header(new Header("Authorization", jwtToken))
+                .body(cmd)
+                .when()
+                .post("/api/users/d")
+
+        then:
+        result.then().statusCode(statusCode)
+
+        where:
+        testName || id || statusCode || jsonResponse
+        "dobry1" || 1L || 200        || ""
+    }
+
+    @Unroll
+    void "delete user not passes"() {
+        given:
+        Map cmd = [
+                id         : id
+        ]
+
+
+        when:
+        Response result = given()
+                .accept(ContentType.JSON)
+                .contentType(ContentType.JSON)
+                .header(new Header("Authorization", jwtToken))
+                .body(cmd)
+                .when()
+                .post("/api/users/d")
+
+        then:
+        result.then().statusCode(statusCode)
+        if (statusCode == 409) {
+            result.body().print().contains("EntityNotFoundException")
+        } else {
+            result.then().body(jsonResponse[0] as String, jsonResponse[1] as Matcher<?>)
+        }
+
+
+        where:
+        testName         || id       || statusCode || jsonResponse
+        "id null"        || null     || 400        || ["id", equalTo(["Wymagana encja nie istnieje"])]
+        "id 0"           || 0L       || 400        || ["id", equalTo(["Wymagana encja nie istnieje"])]
+        "id -1"          || -1L      || 400        || ["id", equalTo(["Wymagana encja nie istnieje"])]
+        "id 999999"      || 999999L  || 400        || ["id", equalTo(["Wymagana encja nie istnieje"])]
+    }
+
 }
