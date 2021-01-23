@@ -39,7 +39,7 @@ public class User implements UserDetails {
   @ManyToOne
   @JoinColumn(name = "type")
   @Fetch(value = FetchMode.JOIN)
-  private UserType type = new UserType();
+  private UserType type;
 
   @Column(name = "name")
   private String name;
@@ -58,7 +58,7 @@ public class User implements UserDetails {
   @ManyToOne
   @JoinColumn(name = "role")
   @Fetch(value = FetchMode.JOIN)
-  private Role role = new Role();
+  private Role role;
 
   public void setOffers(List<Offer> offers) {
     this.offers.clear();

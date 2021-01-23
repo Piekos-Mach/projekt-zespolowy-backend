@@ -1,21 +1,23 @@
 package com.projekt_zespolowy.tablica_ogloszen.validation.user;
 
-import com.projekt_zespolowy.tablica_ogloszen.validation.offer.OfferExistsImpl;
-
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
-import java.lang.annotation.*;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Constraint(validatedBy = {OfferExistsImpl.class})
+@Constraint(validatedBy = {UserExistsImpl.class})
 public @interface UserExists {
 
-    String message() default "{entity.exists}";
+  String message() default "{entity.exists}";
 
-    Class<?>[] groups() default {};
+  Class<?>[] groups() default {};
 
-    Class<? extends Payload>[] payload() default {};
+  Class<? extends Payload>[] payload() default {};
 
 }
