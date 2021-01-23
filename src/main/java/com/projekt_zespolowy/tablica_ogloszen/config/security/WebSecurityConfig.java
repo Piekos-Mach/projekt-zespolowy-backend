@@ -46,36 +46,36 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
 
     // TODO: permit all na security
-    http.cors()
-        .and()
-        .csrf()
-        .disable()
-        .authorizeRequests()
-        .anyRequest()
-        .permitAll()
-        .and()
-        .addFilter(new JwtAuthenticationFilter(authenticationManager(), objectMapper))
-        .addFilter(new JwtAuthorizationFilter(authenticationManager(), userDetailsService))
-        // this disables session creation on Spring Security
-        .sessionManagement()
-        .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+    // http.cors()
+    //     .and()
+    //     .csrf()
+    //     .disable()
+    //     .authorizeRequests()
+    //     .anyRequest()
+    //     .permitAll()
+    //     .and()
+    //     .addFilter(new JwtAuthenticationFilter(authenticationManager(), objectMapper))
+    //     .addFilter(new JwtAuthorizationFilter(authenticationManager(), userDetailsService))
+    //     // this disables session creation on Spring Security
+    //     .sessionManagement()
+    //     .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
     // TODO: podstawowe security oparte o token JWT
-//    http.cors()
-//        .and()
-//        .csrf()
-//        .disable()
-//        .authorizeRequests()
-//        .antMatchers(HttpMethod.POST, SIGN_UP_URL)
-//        .permitAll()
-//        .anyRequest()
-//        .authenticated()
-//        .and()
-//        .addFilter(new JwtAuthenticationFilter(authenticationManager(), objectMapper))
-//        .addFilter(new JwtAuthorizationFilter(authenticationManager(), userDetailsService))
-//        // this disables session creation on Spring Security
-//        .sessionManagement()
-//        .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+   http.cors()
+       .and()
+       .csrf()
+       .disable()
+       .authorizeRequests()
+       .antMatchers(HttpMethod.POST, SIGN_UP_URL)
+       .permitAll()
+       .anyRequest()
+       .authenticated()
+       .and()
+       .addFilter(new JwtAuthenticationFilter(authenticationManager(), objectMapper))
+       .addFilter(new JwtAuthorizationFilter(authenticationManager(), userDetailsService));
+       // this disables session creation on Spring Security
+      //  .sessionManagement()
+      //  .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
   }
 
   @Bean
@@ -83,6 +83,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
     CorsConfiguration corsConfiguration = new CorsConfiguration().applyPermitDefaultValues();
+    corsConfiguration.addAllowedMethod(HttpMethod.PUT);
+    corsConfiguration.addExposedHeader("Authorization");
+    corsConfiguration.addExposedHeader("userId");
     source.registerCorsConfiguration("/**", corsConfiguration);
 
     return source;
