@@ -1,5 +1,7 @@
 package com.projekt_zespolowy.tablica_ogloszen.mappers;
 
+import com.projekt_zespolowy.tablica_ogloszen.config.security.Role;
+import com.projekt_zespolowy.tablica_ogloszen.config.security.RoleRepository;
 import com.projekt_zespolowy.tablica_ogloszen.models.image.Image;
 import com.projekt_zespolowy.tablica_ogloszen.models.offer.Offer;
 import com.projekt_zespolowy.tablica_ogloszen.models.offer.OfferStatus;
@@ -30,6 +32,7 @@ public class MapperResolverService {
     private final OfferStatusRepository offerStatusRepository;
     private final ImageRepository imageRepository;
     private final CurrencyRepository currencyRepository;
+    private final RoleRepository roleRepository;
 
     public User toUser(Long id, @TargetType Class<User> type) {
         return id != null ? userRepository.findById(id).orElse(null) : null;
@@ -57,6 +60,10 @@ public class MapperResolverService {
 
     public Currency toCurrency(Long id, @TargetType Class<Currency> type) {
         return id != null ? currencyRepository.findById(id).orElse(null) : null;
+    }
+
+    public Role toRole(Long id, @TargetType Class<Role> type) {
+        return id != null ? roleRepository.findById(id).orElse(null) : null;
     }
 
 }

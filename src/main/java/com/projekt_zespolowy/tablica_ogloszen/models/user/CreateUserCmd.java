@@ -25,6 +25,6 @@ public class CreateUserCmd {
 
   private UserType type = USER_TYPE.CUSTOMER.toUserType();
 
-  private Role role = ROLE.USER.toRole();
+  private Long role = ROLE.USER.getId();
 
 }

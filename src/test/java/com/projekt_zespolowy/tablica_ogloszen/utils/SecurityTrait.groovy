@@ -8,8 +8,8 @@ trait SecurityTrait {
     def getSecurityToken() {
 
         Map loginCmd = [
-                username: "test",
-                password: "test",
+                username: "a",
+                password: "a",
         ]
         def response = given()
                 .accept(ContentType.JSON)
